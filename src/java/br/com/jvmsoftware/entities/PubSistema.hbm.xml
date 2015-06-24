@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Jun/2015 10:42:38 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.PubSistema" table="pub_sistema" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idSistema" type="java.lang.Integer">
+            <column name="id_sistema" />
+            <generator class="identity" />
+        </id>
+        <property name="nomeSistema" type="string">
+            <column name="nome_sistema" length="20" not-null="true" />
+        </property>
+        <property name="descricaoSistema" type="string">
+            <column name="descricao_sistema" length="500" not-null="true" />
+        </property>
+        <property name="imagemSistema" type="string">
+            <column name="imagem_sistema" length="200" />
+        </property>
+        <property name="ativo" type="boolean">
+            <column name="ativo" not-null="true" />
+        </property>
+        <set name="pubMenus" table="pub_menu" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sistema" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.PubMenu" />
+        </set>
+        <set name="ctrLogs" table="ctr_log" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sistema" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CtrLog" />
+        </set>
+        <set name="acsEmpresaSistemas" table="acs_empresa_sistema" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sistema" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.AcsEmpresaSistema" />
+        </set>
+        <set name="acsUsuarioSistemas" table="acs_usuario_sistema" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sistema" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.AcsUsuarioSistema" />
+        </set>
+    </class>
+</hibernate-mapping>

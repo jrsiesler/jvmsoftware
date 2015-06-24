@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    
+        <f:view>  
+            <h:form id="formMenu">
+                    <p:graphicImage value="/images/jvmsoftware.jpg" height="50px" width="100px"
+                                style=" margin-top: -10px; margin-bottom: -30px"/>
+                    
+                    <p:menubar style="float: right; margin-bottom: 10px; margin-left: -10px; width: 830px; height: 25px; font-size: 12px" 
+                               toggleEvent="click">
+                        <p:menuitem icon="ui-icon-home" value="area trabalho" action="#{menuDashboardController.dashboard}"/>
+                        <p:submenu label="controle de acesso">
+                            <p:menuitem value="minha conta" action="#{menuCadastroController.conta}"/>
+                            <p:menuitem value="usuarios" action="#{menuCadastroController.usuarios}"/>
+                            <p:menuitem value="empresa" action="#{menuCadastroController.empresa}"/>
+                            <p:menuitem value="sistemas" action="#{menuCadastroController.sistemas}"/>
+                        </p:submenu>
+                        <p:submenu label="cadastros">
+                            <p:menuitem value="clientes"/>
+                        </p:submenu>
+                        <p:submenu label="sistemas">
+                            <p:menuitem value="configuração" url="#"/>
+                            <p:menuitem value="cadastro" action="#{menuCadastroController.index}"/>
+                            <p:menuitem value="cadastro" url="#"/>
+                        </p:submenu>
+                        <p:menuitem value="#{menuCadastroController.usu.nomeUsuario}"/>
+                        <p:menuitem value="sair" action="#{userController.logout}"/>
+                        
+                    </p:menubar>
+            </h:form>
+        </f:view>
+</html>  

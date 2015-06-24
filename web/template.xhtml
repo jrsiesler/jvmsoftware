@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:head>
+        <title>jvmd</title>
+    </h:head>
+    <h:body>
+            <pe:layout>
+                <pe:layoutPane position="north" size="15px" closable="false" resizable="false">
+                    <ui:insert name="menu"/> 
+                </pe:layoutPane>
+                <pe:layoutPane position="center">
+                    <p:growl id="growl"/>
+                    <ui:insert name="conteudo"/>
+                </pe:layoutPane>
+            </pe:layout>
+            
+    <style type="text/css">  
+        .ui-layout-north {  
+            z-index:20 !important;  
+            overflow:visible !important;  
+        }  
+      
+        .ui-layout-north .ui-layout-unit-content {  
+            overflow:visible !important;  
+        }
+    </style>  
+    </h:body>
+</html>
+
