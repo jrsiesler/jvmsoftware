@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template.xhtml">  
+    <ui:define name="menu">
+        <ui:include src="menuCadastro.xhtml"/>
+    </ui:define>
+    <ui:define name="conteudo">    
+        
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage value="http://localhost:8084/gestao/images/loading.gif"/>
+        </p:dialog>
+        
+    <h:form>
+        <p:messages id="msgs"/>
+        <p:panel id="dash" header="MODULO CADASTROS - minha conta"  style="height: 590px; text-align: center; alignment-baseline: central">
+            <br/>
+            <p:panelGrid columns="2" layout="grid">
+                <f:facet  name="header">
+                <p:panelGrid columns="4" layout="grid">
+                    <p:outputLabel id="labNome" value="nome"/>
+                    <p:inputText id="nome" label="labNome" rendered="true" disabled="true"
+                                 value="#{cadastroController.usu.nomeUsuario}">
+                    </p:inputText>
+
+                    <p:outputLabel id="labDtNasc" value="nascimento"/>
+                    <p:inputMask mask="99/99/9999" id="dtNasc1" label="labDtNasc"
+                                 value="#{cadastroController.usu.dataNascimento}" disabled="true">
+                        <f:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/>
+                    </p:inputMask>
+
+                    <p:outputLabel id="labMail" value="email"/>
+                    <p:inputText id="mail" label="labMail" rendered="true"  disabled="true"
+                                 value="#{cadastroController.usu.email}">
+                    </p:inputText>
+
+                    <p:outputLabel id="labEmpresa" value="empresa"/>
+                    <p:inputText id="empresa" label="labEmpresa" rendered="true" disabled="true"
+                                 value="#{cadastroController.usu.pubEmpresa.fantasia}">
+                    </p:inputText>
+                </p:panelGrid>
+                </f:facet>
+                
+                <p:outputLabel id="labCpf" value="cpf"/>
+                <p:inputMask mask="999.999.999-99" id="cpf" label="labCpf"
+                             value="#{cadastroController.usu.cpfUsuario}">
+                </p:inputMask>
+                            
+                <p:outputLabel id="labEst" value="Selecione o estado" for="est"/>
+                <h:selectOneMenu id="est" label="labEst" value="#{cadastroController.estado}">
+                    <p:ajax update="@form" process="@form" listener="#{cadastroController.changeEstado}"/>
+                    <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                    <f:selectItems value="#{cadastroController.listEstado}" var="est" itemLabel="#{est.uf} - #{est.estado}" itemValue="#{est.idEstado}"/>
+                </h:selectOneMenu>
+
+                <p:outputLabel id="labMun" value="Selecione o municipio" for="mun"/>
+                <h:selectOneMenu id="mun" label="labMun" value="#{cadastroController.municipio}">
+                    <p:ajax update="@form" process="@form"/>
+                    <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                    <f:selectItems value="#{cadastroController.listMunicipio}" var="mun" itemLabel="#{mun.municipio}" itemValue="#{mun.idMunicipio}"/>
+                </h:selectOneMenu>
+
+                <p:outputLabel id="labEndereco" value="endereco"/>
+                <p:inputText id="endereco" label="labEndereco" rendered="true"
+                             value="#{cadastroController.usu.endereco}">
+                </p:inputText>
+
+                <p:outputLabel id="labNumero" value="numero"/>
+                <p:inputText type="float" id="numero" label="labNumero" rendered="true"
+                             value="#{cadastroController.usu.numero}">
+                </p:inputText>
+                
+                <p:outputLabel id="labBairro" value="bairro"/>
+                <p:inputText id="bairro" label="labBairro" rendered="true"
+                             value="#{cadastroController.usu.bairro}">
+                </p:inputText>
+
+                <p:outputLabel id="labComplemento" value="complemento"/>
+                <p:inputText id="complemento" label="labComplemento" rendered="true"
+                             value="#{cadastroController.usu.complemento}">
+                </p:inputText>
+
+                <p:outputLabel id="labCep" value="CEP"/>
+                <p:inputMask mask="99.999-999" id="cep" label="labCep"
+                             value="#{cadastroController.usu.cep}">
+                </p:inputMask>
+                            
+                <p:outputLabel id="labTelefone" value="telefone"/>
+                <p:inputMask mask="(99)999999999" id="telefone" label="labTelefone"
+                             value="#{cadastroController.usu.telefone}">
+                </p:inputMask>
+                
+                <f:facet  name="footer">
+                    <center>
+                            <p:commandButton actionListener="#{cadastroController.gravarUsuario}" value="salvar alterações" update="msgs"/>
+                            <p:commandButton action="#{cadastroController.alterarSenha}" value="alterar senha"/>
+                    </center>
+                </f:facet>
+            </p:panelGrid>
+        </p:panel>
+        <div style="clear:both" />
+        </h:form>
+        
+    </ui:define>  
+</ui:composition>  
+</html>
