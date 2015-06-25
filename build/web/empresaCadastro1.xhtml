@@ -89,8 +89,8 @@
             <p:panelGrid columns="2" layout="grid">
                 <h:outputText value="Já está cadastrado?"/>
                 <h:outputText value="Esqueceu sua senha?"/>
-                <p:commandLink action="#{menuController.login}" value="entrar"/>    
-                <p:commandLink action="#{menuController.recuperaSenha}" value="recuperar senha"/>
+                <p:commandLink action="#{menuController.login}" value="entrar" immediate="true"/>    
+                <p:commandLink action="#{menuController.recuperaSenha}" value="recuperar senha" immediate="true"/>
             </p:panelGrid>
             <p:watermark for="nome" value="Nome completo" />
             <p:watermark for="mail" value="Endereço de email" />

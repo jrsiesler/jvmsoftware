@@ -56,8 +56,8 @@
             <p:panelGrid columns="2" layout="grid">
                 <h:outputText value="Esqueceu sua senha?"/>
                 <h:outputText value="Não está cadastrado?"/>
-                <p:commandLink action="#{menuController.recuperaSenha}" value="recuperar senha"/>
-                <p:commandLink action="#{menuController.cadastro}" value="cadastre-se"/>
+                <p:commandLink action="#{menuController.recuperaSenha}" value="recuperar senha" immediate="true"/>
+                <p:commandLink action="#{menuController.cadastro}" value="cadastre-se" immediate="true"/>
                 
             </p:panelGrid>
             </center>

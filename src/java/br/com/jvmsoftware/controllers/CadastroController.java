@@ -97,6 +97,9 @@ public final class CadastroController implements Serializable{
                 Logger.getLogger(CadastroController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        else if (usu == null) {
+            usu = new PubUsuario();
+        }
         if ("validacao".equals(step) || "empresa".equals(step)) {
             RequestContext.getCurrentInstance().execute("PF('wiz').hideBackNav();");
         }
@@ -202,6 +205,26 @@ public final class CadastroController implements Serializable{
 
         // busca senha e confSenha do formulário
         String senha = (String) senhaG;
+        String conf = (String) o;
+        // verifica senhas
+        if (senha == null || conf == null) {
+            message.setDetail("Preencha a senha e a confirmação da senha");
+            //invoked a server warning in JSP
+            message.setSeverity(FacesMessage.SEVERITY_WARN);
+            throw new ValidatorException(message);
+        } else if (!senha.equals(conf)) {
+            message.setDetail("Confirmação de senha não confere com a senha");
+            //invoked a server warning in JSP
+            message.setSeverity(FacesMessage.SEVERITY_WARN);
+            throw new ValidatorException(message);
+        }
+    }
+
+    // valida senha alteração
+    public void validateSenhaAltera(FacesContext fc, UIComponent uic, Object o) throws ValidatorException {
+
+        // busca senha e confSenha do formulário
+        String senha = (String) senhaN;
         String conf = (String) o;
         // verifica senhas
         if (senha == null || conf == null) {

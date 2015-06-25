@@ -47,8 +47,8 @@
                 <p:panelGrid columns="2" layout="grid">
                     <h:outputText value="Já está cadastrado?"/>
                     <h:outputText value="Não está cadastrado?"/>
-                    <p:commandLink action="#{menuController.login}" value="entrar"/>
-                    <p:commandLink action="#{menuController.cadastro}" value="cadastre-se"/>    
+                    <p:commandLink action="#{menuController.login}" value="entrar" immediate="true"/>
+                    <p:commandLink action="#{menuController.cadastro}" value="cadastre-se" immediate="true"/>    
                 </p:panelGrid>
                 <p:watermark for="mail" value="Email" />
             </center>

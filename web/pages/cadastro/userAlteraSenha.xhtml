@@ -54,7 +54,7 @@
                 <p:outputLabel id="labConfSenha" value="repetir nova senha"/>
                 <p:password id="confSenha" label="labConfSenha" value="#{cadastroController.confSenha}"
                             required="true" requiredMessage="Redigite sua senha"
-                            validator="#{cadastroController.validateSenha}">
+                            validator="#{cadastroController.validateSenhaAltera}">
                     <p:ajax event="blur" update="confSenhaMsg"/>
                 </p:password>
                 <p:message id="confSenhaMsg" for="confSenha"/>
@@ -62,8 +62,8 @@
                 <br/>
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{cadastroController.updateSenha}" value="alterar"/>
-                        <p:commandButton action="#{cadastroController.voltaUser}" value="cancelar"/>
+                        <h:commandButton action="#{cadastroController.updateSenha}" value="alterar"/>
+                        <h:commandButton action="#{cadastroController.voltaUser}" value="cancelar" immediate="true"/>
                     </center>
                 </f:facet>
             </p:panelGrid>
