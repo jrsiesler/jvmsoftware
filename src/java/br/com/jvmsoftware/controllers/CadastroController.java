@@ -425,13 +425,14 @@ public final class CadastroController implements Serializable{
         }
         else if (!usu.getSenha().equals(Criptografia.criptografar(senhaG))) {
             msg = "A senha atual não confere (o sistema diferencia letras maiusculas/minusculas)";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
         }
         else {
             usu.setSenha(Criptografia.criptografar(senhaN));
             usuDAO.updateUsuario(usu);
             msg = "Senha alterada com sucesso (será valida para seu próximo login).";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+            navegar = "/pages/cadastro/user";
         }
         return navegar;
     }
