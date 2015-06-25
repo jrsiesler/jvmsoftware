@@ -146,16 +146,6 @@ public final class CadastroController implements Serializable{
         String navegar = "/pages/dashboard";
         return navegar;
     }
-    
-    public String voltaUser() throws SQLException {
-        String navegar = "/pages/cadastro/user";
-        return navegar;
-    }
-    
-    public String alterarSenha() throws SQLException {
-        String navegar = "/pages/cadastro/userAlteraSenha";
-        return navegar;
-    }
 
     // redireciona para cadastro
     public void reenviarCodigo() throws EmailException, SQLException {
@@ -220,26 +210,6 @@ public final class CadastroController implements Serializable{
         }
     }
 
-    // valida senha alteração
-    public void validateSenhaAltera(FacesContext fc, UIComponent uic, Object o) throws ValidatorException {
-
-        // busca senha e confSenha do formulário
-        String senha = (String) senhaN;
-        String conf = (String) o;
-        // verifica senhas
-        if (senha == null || conf == null) {
-            message.setDetail("Preencha a senha e a confirmação da senha");
-            //invoked a server warning in JSP
-            message.setSeverity(FacesMessage.SEVERITY_WARN);
-            throw new ValidatorException(message);
-        } else if (!senha.equals(conf)) {
-            message.setDetail("Confirmação de senha não confere com a senha");
-            //invoked a server warning in JSP
-            message.setSeverity(FacesMessage.SEVERITY_WARN);
-            throw new ValidatorException(message);
-        }
-    }
-    
     // valida email
     public void validateMail(FacesContext fc, UIComponent uic, Object o) throws ValidatorException {
 
@@ -416,26 +386,6 @@ public final class CadastroController implements Serializable{
         return val;
     }
     
-    // alterar senha do usuario
-    public String updateSenha() throws SQLException {
-        String navegar = "/pages/cadastro/userAlteraSenha";
-        if (!senhaN.equals(confSenha)) {
-            msg = "Confirmação de senha não confere com a senha informada.";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
-        }
-        else if (!usu.getSenha().equals(Criptografia.criptografar(senhaG))) {
-            msg = "A senha atual não confere (o sistema diferencia letras maiusculas/minusculas)";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
-        }
-        else {
-            usu.setSenha(Criptografia.criptografar(senhaN));
-            usuDAO.updateUsuario(usu);
-            msg = "Senha alterada com sucesso (será valida para seu próximo login).";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
-            navegar = "/pages/cadastro/user";
-        }
-        return navegar;
-    }
     
     // insere empresa
     public boolean insereEmpresa() {
