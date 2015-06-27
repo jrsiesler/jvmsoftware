@@ -250,6 +250,7 @@ public final class CadastroController implements Serializable{
             usu.setDataRessetSenha(new Date());
             usu.setDataValidacaoResset(new Date());
             usu.setAtivo(true);
+            usu.setMaster(true);
             usuDAO.inserirUsuario(usu);
             // enviar mail
             enviarMailCadastro();

@@ -54,6 +54,7 @@ public class DashboardController implements Serializable{
     }
      
     /*** navegação
+     * @return 
      */
     public String cadastrarEmpresa() {
         String viewId = SecurityUtil.logIn("/pages/wizard");

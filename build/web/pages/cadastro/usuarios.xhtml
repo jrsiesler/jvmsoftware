@@ -20,7 +20,30 @@
     <h:form>
         <p:messages id="msgs"/>
         <p:panel id="dash" header="MODULO CADASTROS - usuários"  style="height: 590px; text-align: center; alignment-baseline: central">
-            <h:outputText value="#{indexCadastroController.usu.nomeUsuario}"/>
+            <br/>
+            <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp"/>
+            <h:selectOneMenu id="emp" label="labEmp" value="#{usuariosCadastroController.empresa}">
+                <p:ajax update="@form" process="@form" listener="#{usuariosCadastroController.changeEmpresa}"/>
+                <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                <f:selectItems value="#{usuariosCadastroController.listEmpresas}" var="emp" itemLabel="#{emp.idEmpresa} - #{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
+            </h:selectOneMenu>
+            <br/><br/>
+            <p:dataTable var="user" value="#{usuariosCadastroController.listUsuarios}">
+                <p:column headerText="Nome">
+                    <h:outputText value="#{user.nomeUsuario}"/>
+                </p:column>
+                <p:column headerText="Email">
+                    <h:outputText value="#{user.email}"/>
+                </p:column>
+                <p:column headerText="Ativo">
+                    <p:selectBooleanCheckbox value="#{user.ativo}"/>
+                </p:column>
+                
+                <p:column headerText="detalhes">
+                    <h:outputText value=""/>
+                </p:column>
+            </p:dataTable>
+
         </p:panel>
         <div style="clear:both" />
     </h:form>

@@ -46,7 +46,7 @@ public class PubUsuarioDAO extends DefaultDAO {
         getSession();
         begin();
         List<PubUsuario> usuarios;
-        usuarios = session.createQuery("from PubUsuario u where u.empresa = :emp").setParameter("emp", empresa.getIdEmpresa()).list();
+        usuarios = session.createQuery("from PubUsuario u where u.pubEmpresa.idEmpresa = :emp").setParameter("emp", empresa.getIdEmpresa()).list();
         return usuarios;
     }
     

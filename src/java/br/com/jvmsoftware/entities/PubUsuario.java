@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 4/Jun/2015 10:42:36 by Hibernate Tools 4.3.1
+// Generated 25/Jun/2015 16:01:27 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -33,6 +33,7 @@ public class PubUsuario  implements java.io.Serializable {
      private String complemento;
      private Float cep;
      private Float telefone;
+     private Boolean master;
      private Set<AcsAcessoUsuarios> acsAcessoUsuarioses = new HashSet<AcsAcessoUsuarios>(0);
      private Set<CtrLog> ctrLogs = new HashSet<CtrLog>(0);
      private Set<AcsUsuarioSistema> acsUsuarioSistemas = new HashSet<AcsUsuarioSistema>(0);
@@ -47,7 +48,7 @@ public class PubUsuario  implements java.io.Serializable {
         this.senha = senha;
         this.ativo = ativo;
     }
-    public PubUsuario(PubEmpresa pubEmpresa, PubEstado pubEstado, PubMunicipio pubMunicipio, Float cpfUsuario, String nomeUsuario, String email, String senha, Date dataNascimento, Date dataCadastro, Date dataVerificacao, String codigoVerificacao, boolean ativo, Date dataRessetSenha, Date dataValidacaoResset, String endereco, Float numero, String bairro, String complemento, Float cep, Float telefone, Set<AcsAcessoUsuarios> acsAcessoUsuarioses, Set<CtrLog> ctrLogs, Set<AcsUsuarioSistema> acsUsuarioSistemas) {
+    public PubUsuario(PubEmpresa pubEmpresa, PubEstado pubEstado, PubMunicipio pubMunicipio, Float cpfUsuario, String nomeUsuario, String email, String senha, Date dataNascimento, Date dataCadastro, Date dataVerificacao, String codigoVerificacao, boolean ativo, Date dataRessetSenha, Date dataValidacaoResset, String endereco, Float numero, String bairro, String complemento, Float cep, Float telefone, Boolean master, Set<AcsAcessoUsuarios> acsAcessoUsuarioses, Set<CtrLog> ctrLogs, Set<AcsUsuarioSistema> acsUsuarioSistemas) {
        this.pubEmpresa = pubEmpresa;
        this.pubEstado = pubEstado;
        this.pubMunicipio = pubMunicipio;
@@ -68,6 +69,7 @@ public class PubUsuario  implements java.io.Serializable {
        this.complemento = complemento;
        this.cep = cep;
        this.telefone = telefone;
+       this.master = master;
        this.acsAcessoUsuarioses = acsAcessoUsuarioses;
        this.ctrLogs = ctrLogs;
        this.acsUsuarioSistemas = acsUsuarioSistemas;
@@ -219,6 +221,13 @@ public class PubUsuario  implements java.io.Serializable {
     
     public void setTelefone(Float telefone) {
         this.telefone = telefone;
+    }
+    public Boolean getMaster() {
+        return this.master;
+    }
+    
+    public void setMaster(Boolean master) {
+        this.master = master;
     }
     public Set<AcsAcessoUsuarios> getAcsAcessoUsuarioses() {
         return this.acsAcessoUsuarioses;
