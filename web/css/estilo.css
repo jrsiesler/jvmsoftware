@@ -8,6 +8,35 @@ and open the template in the editor.
     Author     : jose
 */
 
+/* icones modulos */
+.icon-cadastros {  
+    background-image: url("../images/icons/draft.png") !important;  
+}
+
+.icon-compras {  
+    background-image: url("../images/icons/add187.png") !important;  
+}
+
+.icon-financas {  
+    background-image: url("../images/icons/finance.png") !important;  
+}
+
+.icon-servicos {  
+    background-image: url("../images/icons/settings48.png") !important;  
+}
+
+.icon-vendas {  
+    background-image: url("../images/icons/elegant8.png") !important;  
+}
+
+.icon-contabilidade {  
+    background-image: url("../images/icons/businessman61.png") !important;  
+}
+
+.icon-estoque {  
+    background-image: url("../images/icons/work11.png") !important;  
+}
+
 /* icones comuns */
 .icon-home {  
     background-image: url("../images/icons/home.png") !important;  

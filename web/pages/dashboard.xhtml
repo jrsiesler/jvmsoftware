@@ -44,37 +44,36 @@
             <p:panel id="sistemas" header="modulos" style="height: 255px; width:390px; text-align: center; alignment-baseline: central">
                 <p:panelGrid id="sistemasDash" columns="8" layout="grid" style="alignment-adjust: central; alignment-baseline: central">
                     <!-- primeira linha -->
-                    <p:commandButton id="acesso" icon="ui-icon-locked">
-                        <p:tooltip for="acesso" value="modulo de controle de acesso"/>
-                    </p:commandButton>
-                    <h:outputText value=" "/>
-                    <p:commandButton id="cadastro" image="cadastro" action="#{dashboardController.cadastros}">
+                    <p:commandButton id="cadastro" icon="icon-cadastros" action="#{dashboardController.cadastros}">
                         <p:tooltip for="cadastro" value="modulo de cadastros"/>
                     </p:commandButton>
                     <h:outputText value=" "/>
-                    <p:commandButton id="compras" icon="ui-icon-cart">
+                    <p:commandButton id="compras" icon="icon-compras">
                         <p:tooltip for="compras" value="modulo de compras"/>
                     </p:commandButton>
                     <h:outputText value=" "/>
-                    <p:commandButton id="finance" icon="ui-icon-calculator">
+                    <p:commandButton id="finance" icon="icon-financas">
                         <p:tooltip for="finance" value="modulo de finanças"/>
                     </p:commandButton>
                     <!-- segunda linha -->  
-                    <p:commandButton id="servico" icon="ui-icon-gear">
+                    <p:commandButton id="servico" icon="icon-servicos">
                         <p:tooltip for="servico" value="modulo de controle de serviços"/>
                     </p:commandButton>
                     <h:outputText value=" "/>
-                    <p:commandButton id="vendas" icon="ui-icon-tag">
+                    <p:commandButton id="vendas" icon="icon-vendas">
                         <p:tooltip for="vendas" value="modulo de vendas"/>
                     </p:commandButton>
                     <h:outputText value=" "/>
-                    <p:commandButton id="contabil" icon="ui-icon-suitcase">
+                    <p:commandButton id="contabil" icon="icon-contabilidade">
                         <p:tooltip for="contabil" value="modulo de contabilidade"/>
                     </p:commandButton>
                     <h:outputText value=" "/>
-                    <p:commandButton id="estoque" icon="ui-icon-folder-collapsed">
+                    <p:commandButton id="estoque" icon="icon-estoque">
                         <p:tooltip for="estoque" value="modulo de estoque"/>
                     </p:commandButton>
+                    
+                    <h:outputText value=" "/>
+                    <h:outputText value=" "/>
                 </p:panelGrid>
             </p:panel>
  
