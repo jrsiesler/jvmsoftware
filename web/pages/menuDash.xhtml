@@ -19,14 +19,14 @@ and open the template in the editor.
                     
                     <p:menubar style="float: right; margin-bottom: 10px; margin-left: -10px; width: 830px; height: 25px; font-size: 12px" 
                                toggleEvent="click">
-                        <p:menuitem icon="ui-icon-home" value="area trabalho" action="#{menuDashboardController.dashboard}"/>
-                        <p:submenu label="sistemas">
+                        <p:menuitem icon="icon-home" value="area trabalho" action="#{menuDashboardController.dashboard}"/>
+                        <p:submenu label="sistemas" icon="icon-sistemas">
                             <p:menuitem value="configuração" url="#"/>
                             <p:menuitem value="cadastro" action="#{menuDashboardController.cadIndex}"/>
                             <p:menuitem value="cadastro" url="#"/>
                         </p:submenu>
-                        <p:menuitem value="#{menuDashboardController.usu.nomeUsuario}"/>
-                        <p:menuitem value="sair" action="#{userController.logout}"/>
+                        <p:menuitem value="#{menuDashboardController.usu.nomeUsuario}" icon="icon-user"/>
+                        <p:menuitem value="sair" action="#{userController.logout}" icon="icon-sair"/>
                         
                     </p:menubar>
             </h:form>

@@ -17,14 +17,15 @@ and open the template in the editor.
                     <p:graphicImage value="/images/jvmsoftware.jpg" height="50px" width="100px"
                                 style=" margin-top: -10px; margin-bottom: -30px"/>
                     
-                    <p:menubar style="float: right; margin-bottom: 10px; margin-left: -10px; width: 830px; height: 25px; font-size: 12px">
-                        <p:menuitem icon="ui-icon-home" value="home" action="#{menuController.index}"/>
-                        <p:submenu label="empresa">
+                    <p:menubar style="float: right; margin-bottom: 10px; margin-left: -10px; width: 830px; height: 25px; font-size: 12px"
+                               toggleEvent="click">
+                        <p:menuitem icon="icon-home" value="home" action="#{menuController.index}"/>
+                        <p:submenu label="empresa" icon="icon-empresa">
                             <p:menuitem value="a empresa" action="#{menuController.empresa}"/>
                             <p:menuitem value="objetivos" action="#{menuController.empresaObjetivo}"/>
                         </p:submenu>
-                        <p:menuitem value="cadastre-se" action="#{menuController.cadastro}"/>
-                        <p:menuitem value="entrar" action="#{menuController.login}"/>
+                        <p:menuitem value="cadastre-se" action="#{menuController.cadastro}" icon="icon-cadastrar"/>
+                        <p:menuitem value="entrar" action="#{menuController.login}" icon="icon-entrar"/>
                     </p:menubar>
             </h:form>
         </f:view>
