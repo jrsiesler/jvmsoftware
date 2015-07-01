@@ -76,6 +76,10 @@ and open the template in the editor.
     background-image: url("../images/icons/delete.png") !important;  
 }
 
+.icon-salvar {  
+    background-image: url("../images/icons/save2.png") !important;  
+}
+
 .icon-editar {  
     background-image: url("../images/icons/edit.png") !important;  
 }
