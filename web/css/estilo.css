@@ -68,6 +68,32 @@ and open the template in the editor.
     background-image: url("../images/icons/marketing.png") !important;  
 }
 
+/* icones modulo cadastro */
+.icon-controle-acesso {  
+    background-image: url("../images/icons/network14.png") !important;  
+}
+
+.icon-usuarios {  
+    background-image: url("../images/icons/multiple25.png") !important;  
+}
+
+.icon-clientes {  
+    background-image: url("../images/icons/crowd.png") !important;  
+}
+
+.icon-fornecedores {  
+    background-image: url("../images/icons/book227.png") !important;  
+}
+
+.icon-produtos {  
+    background-image: url("../images/icons/barcode12.png") !important;  
+}
+
+.icon-funcionarios {  
+    background-image: url("../images/icons/business31.png") !important;  
+}
+
+
 .icon-confirmar {  
     background-image: url("../images/icons/checked.png") !important;  
 }
