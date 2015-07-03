@@ -11,8 +11,11 @@
 <link href="#{facesContext.externalContext.requestContextPath}/resources/css/estilos.css" rel="stylesheet" type="text/css"/>
 <ui:composition template="/template.xhtml">  
     <ui:define name="menu">
-        <ui:include src="menuDash.xhtml"/>
+        <p:panel style=" width:100%; height:55px">
+            <ui:include src="menuDash.xhtml"/>
+        </p:panel>
     </ui:define>
+    
     <ui:define name="conteudo">    
         
         <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />

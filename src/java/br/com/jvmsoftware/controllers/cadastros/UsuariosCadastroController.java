@@ -30,6 +30,7 @@ public class UsuariosCadastroController {
     private PubEmpresaDAO empDAO = new PubEmpresaDAO();
     private PubUsuarioDAO usuDAO = new PubUsuarioDAO();
     private PubUsuario usu = new PubUsuario();
+    private PubUsuario selectedUsuario;
     private List<PubEmpresa> listEmpresas;
     private List<PubUsuario> listUsuarios;
     private boolean renderEmpresa = false;
@@ -54,7 +55,31 @@ public class UsuariosCadastroController {
         }
     }
     
-    // change tipo de cadastro
+    /** navergação
+    * @return 
+    */
+    
+    public String usuarios() {
+        String navegar = "/pages/cadastro/usuarios";
+        return navegar;
+    }
+    
+    public String usuariosView() {
+        String navegar = "/pages/cadastro/usuariosView";
+        return navegar;
+    }
+    
+    public String usuariosEdit() {
+        String navegar = "/pages/cadastro/usuariosEdit";
+        return navegar;
+    }
+    
+    public String usuariosNew() {
+        String navegar = "/pages/cadastro/usuariosNew";
+        return navegar;
+    }
+    
+    // change empresa
     public void changeEmpresa() throws SQLException {
         if (empresa == 0) {
             listUsuarios = usuDAO.listUsuariosByEmpresa(usu.getPubEmpresa());
@@ -116,6 +141,16 @@ public class UsuariosCadastroController {
     public void setListUsuarios(List<PubUsuario> listUsuarios) {
         this.listUsuarios = listUsuarios;
     }
+
+    public PubUsuario getSelectedUsuario() {
+        return selectedUsuario;
+    }
+
+    public void setSelectedUsuario(PubUsuario selectedUsuario) {
+        this.selectedUsuario = selectedUsuario;
+    }
+    
+    
     
     
 }

@@ -14,10 +14,11 @@ and open the template in the editor.
     
         <f:view>  
             <h:form id="formMenu">
-                    <p:graphicImage value="/images/jvmsoftware.jpg" height="50px" width="100px"
+                
+                    <p:graphicImage value="/images/jvmsoftware.jpg" height="50px" width="12%"
                                 style=" margin-top: -10px; margin-bottom: -30px"/>
                     
-                    <p:menubar style="float: right; margin-bottom: 10px; margin-left: -10px; width: 830px; height: 25px; font-size: 12px"
+                    <p:menubar style="float: right; margin-bottom: 10px; margin-left: -10px; width: 85%; font-size: 12px"
                                toggleEvent="click">
                         <p:menuitem icon="icon-home" value="home" action="#{menuController.index}"/>
                         <p:submenu label="empresa" icon="icon-empresa">
@@ -27,6 +28,7 @@ and open the template in the editor.
                         <p:menuitem value="cadastre-se" action="#{menuController.cadastro}" icon="icon-cadastrar"/>
                         <p:menuitem value="entrar" action="#{menuController.login}" icon="icon-entrar"/>
                     </p:menubar>
+                
             </h:form>
         </f:view>
 </html>  

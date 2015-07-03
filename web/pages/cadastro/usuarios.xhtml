@@ -8,8 +8,11 @@
       xmlns:pe="http://primefaces.org/ui/extensions">
 <ui:composition template="/template.xhtml">  
     <ui:define name="menu">
-        <ui:include src="menuCadastro.xhtml"/>
+        <p:panel style=" width:100%; height:55px">
+            <ui:include src="menuCadastro.xhtml"/>
+        </p:panel>
     </ui:define>
+    
     <ui:define name="conteudo">    
         
         <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
@@ -19,15 +22,23 @@
         
     <h:form>
         <p:messages id="msgs"/>
-        <p:panel id="dash" header="MODULO CADASTROS - usuários"  style="height: 590px; text-align: center; alignment-baseline: central">
-            <br/>
-            <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp"/>
-            <h:selectOneMenu id="emp" label="labEmp" value="#{usuariosCadastroController.empresa}">
-                <p:ajax update="@form" process="@form" listener="#{usuariosCadastroController.changeEmpresa}"/>
-                <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
-                <f:selectItems value="#{usuariosCadastroController.listEmpresas}" var="emp" itemLabel="#{emp.idEmpresa} - #{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
-            </h:selectOneMenu>
-            <br/><br/>
+        <p:panel id="dash" style="height: 590px; text-align: center; alignment-baseline: central">
+            <f:facet name="header">
+                <h:outputText value="MODULO CADASTROS - usuários"/>
+                <div align="center">
+                <p:panelGrid columns="3">
+                <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp"/>
+                <p:selectOneMenu id="emp" label="labEmp" value="#{usuariosCadastroController.empresa}">
+                    <p:ajax update="@form" process="@form" listener="#{usuariosCadastroController.changeEmpresa}"/>
+                    <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                    <f:selectItems value="#{usuariosCadastroController.listEmpresas}" var="emp" itemLabel="#{emp.idEmpresa} - #{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
+                </p:selectOneMenu>
+                <p:commandButton id="btnNew" icon="icon-novo-usuario" action="#{usuariosCadastroController.usuariosNew}">
+                    <p:tooltip value="visualizar usuario" for="btnNew"/>
+                </p:commandButton>
+                </p:panelGrid>
+                </div>
+            </f:facet>
             <p:dataTable var="user" value="#{usuariosCadastroController.listUsuarios}">
                 <p:column headerText="Nome">
                     <h:outputText value="#{user.nomeUsuario}"/>
@@ -36,11 +47,16 @@
                     <h:outputText value="#{user.email}"/>
                 </p:column>
                 <p:column headerText="Ativo">
-                    <p:selectBooleanCheckbox value="#{user.ativo}"/>
+                    <p:selectBooleanCheckbox value="#{user.ativo}" disabled="true"/>
                 </p:column>
                 
                 <p:column headerText="detalhes">
-                    <p:commandButton value="visualizar" action="#"/>
+                        <p:commandButton id="btnView" icon="icon-visualizar" action="#{usuariosCadastroController.usuariosView}">
+                            <p:tooltip value="visualizar usuario" for="btnView"/>
+                        </p:commandButton>
+                        <p:commandButton id="btnEdit" icon="icon-editar" action="#{usuariosCadastroController.usuariosEdit}">
+                            <p:tooltip value="editar usuario" for="btnEdit"/>
+                        </p:commandButton>
                 </p:column>
             </p:dataTable>
 

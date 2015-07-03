@@ -93,6 +93,10 @@ and open the template in the editor.
     background-image: url("../images/icons/business31.png") !important;  
 }
 
+.icon-novo-usuario {  
+    background-image: url("../images/icons/add40.png") !important;  
+}
+
 
 .icon-confirmar {  
     background-image: url("../images/icons/checked.png") !important;  
@@ -114,6 +118,9 @@ and open the template in the editor.
     background-image: url("../images/icons/email.png") !important;  
 }
 
+.icon-visualizar {  
+    background-image: url("../images/icons/magnifier13.png") !important;  
+}
 
 
 /* configuração do menu sobre o frame principal */
