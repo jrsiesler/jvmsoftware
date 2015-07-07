@@ -122,6 +122,13 @@ and open the template in the editor.
     background-image: url("../images/icons/magnifier13.png") !important;  
 }
 
+.icon-voltar {  
+    background-image: url("../images/icons/return13.png") !important;  
+}
+
+.icon-incluir {  
+    background-image: url("../images/icons/hospital25.png") !important;  
+}
 
 /* configuração do menu sobre o frame principal */
 .ui-layout-north {  

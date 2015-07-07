@@ -51,12 +51,18 @@
                 </p:column>
                 
                 <p:column headerText="detalhes">
-                        <p:commandButton id="btnView" icon="icon-visualizar" action="#{usuariosCadastroController.usuariosView}">
-                            <p:tooltip value="visualizar usuario" for="btnView"/>
-                        </p:commandButton>
-                        <p:commandButton id="btnEdit" icon="icon-editar" action="#{usuariosCadastroController.usuariosEdit}">
-                            <p:tooltip value="editar usuario" for="btnEdit"/>
-                        </p:commandButton>
+                    <p:commandButton id="btnView" icon="icon-visualizar" action="#{usuariosCadastroController.usuariosView}">
+                        <f:setPropertyActionListener value="#{user}" target="#{usuariosCadastroController.selectedUsuario}"/>
+                        <p:tooltip value="visualizar usuario" for="btnView"/>
+                    </p:commandButton>
+                    <p:commandButton id="btnEdit" icon="icon-editar" action="#{usuariosCadastroController.usuariosEdit}">
+                        <f:setPropertyActionListener value="#{user}" target="#{usuariosCadastroController.selectedUsuario}"/>
+                        <p:tooltip value="editar usuario" for="btnEdit"/>
+                    </p:commandButton>
+                    <p:commandButton id="btnAtivar" icon="icon-confirmar" action="#">
+                        <f:setPropertyActionListener value="#{user}" target="#{usuariosCadastroController.selectedUsuario}"/>
+                        <p:tooltip value="ativar / inativar usuário" for="btnAtivar"/>
+                    </p:commandButton>
                 </p:column>
             </p:dataTable>
 

@@ -26,7 +26,8 @@
     <h:form>
         <p:messages id="msgs"/>
         <p:panel id="dash" header="AREA DE TRABALHO"  style="height: 590px; text-align: center; alignment-baseline: central">
-        <p:dashboard id="board" model="#{dashboardController.model}">
+        <center>
+            <p:dashboard id="board" model="#{dashboardController.model}" style=" alignment-baseline: central; alignment-adjust: central">
             
             <p:panel id="avisos" header="avisos" style="height: 520px; width:235px; text-align: center; alignment-baseline: central">
                 <p:graphicImage value="/images/menus/punctuation4.png" rendered="#{dashboardController.cadEmpIncompleto}"/>
@@ -89,6 +90,7 @@
                 <h:outputText value="Dados da conta (forma pgto, proximo vencimento)"/>
             </p:panel>
         </p:dashboard>
+        </center>
         </p:panel>
         <div style="clear:both" />
     </h:form>

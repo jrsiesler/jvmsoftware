@@ -139,10 +139,16 @@ public class UserCadastroController {
         }
     }
 
+    // change tipo de cadastro
+    public void changeEstado() throws SQLException {
+        listMunicipio = municDAO.listMunicipiosByEstado(estDAO.getById(estado));
+    }
+
     
     
     /**getters & setters
      * 
+     * @return 
      */
     public PubUsuario getUsu() {
         return usu;

@@ -5,19 +5,31 @@
  */
 package br.com.jvmsoftware.controllers.cadastros;
 
+import br.com.jvmsoftware.daos.PubConfigEmpresaDAO;
 import br.com.jvmsoftware.daos.PubEmpresaDAO;
+import br.com.jvmsoftware.daos.PubEstadoDAO;
+import br.com.jvmsoftware.daos.PubMunicipioDAO;
 import br.com.jvmsoftware.daos.PubUsuarioDAO;
+import br.com.jvmsoftware.entities.PubConfigEmpresa;
 import br.com.jvmsoftware.entities.PubEmpresa;
+import br.com.jvmsoftware.entities.PubEstado;
+import br.com.jvmsoftware.entities.PubMunicipio;
 import br.com.jvmsoftware.entities.PubUsuario;
+import br.com.jvmsoftware.util.Criptografia;
+import br.com.jvmsoftware.util.EnviarMail;
+import br.com.jvmsoftware.util.GeraCodigoVerificacao;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.mail.EmailException;
 
 /**
  *
@@ -27,14 +39,21 @@ import javax.servlet.http.HttpServletRequest;
 @ViewScoped
 public class UsuariosCadastroController {
     
-    private PubEmpresaDAO empDAO = new PubEmpresaDAO();
-    private PubUsuarioDAO usuDAO = new PubUsuarioDAO();
+    private final PubEmpresaDAO empDAO = new PubEmpresaDAO();
+    private final PubUsuarioDAO usuDAO = new PubUsuarioDAO();
+    private final PubEstadoDAO estDAO = new PubEstadoDAO();
+    private final PubMunicipioDAO municDAO = new PubMunicipioDAO();
+    private List<PubEstado> listEstado;
+    private List<PubMunicipio> listMunicipio;
+    private int municipio = 0;
+    private int estado = 0;
     private PubUsuario usu = new PubUsuario();
     private PubUsuario selectedUsuario;
     private List<PubEmpresa> listEmpresas;
     private List<PubUsuario> listUsuarios;
     private boolean renderEmpresa = false;
     private int empresa = 0;
+    private String msg;
     
     /**
      * Creates a new instance of UsuariosCadastroController
@@ -46,10 +65,23 @@ public class UsuariosCadastroController {
     public void Init() {
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
         usu = (PubUsuario)request.getSession().getAttribute("usuario");
+        selectedUsuario = (PubUsuario)request.getSession().getAttribute("selectedUsuario");
+        if (selectedUsuario != null) {
+            if (selectedUsuario.getPubEstado() != null) {
+                estado = selectedUsuario.getPubEstado().getIdEstado();
+                if (selectedUsuario.getPubMunicipio() != null) {
+                    municipio = selectedUsuario.getPubMunicipio().getIdMunicipio();
+                }
+            }
+        }
         renderEmpresa = renderEmpresa();
         try {
             listEmpresas = empDAO.listAllEmpresas();
             listUsuarios = usuDAO.listUsuariosByEmpresa(usu.getPubEmpresa());
+            listEstado = estDAO.listAllEstados();
+            if (estado != 0) {
+                listMunicipio = municDAO.listMunicipiosByEstado(estDAO.getById(estado));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UsuariosCadastroController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -60,23 +92,90 @@ public class UsuariosCadastroController {
     */
     
     public String usuarios() {
+        HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
+        request.getSession().setAttribute("selectedUsuario", null);  
         String navegar = "/pages/cadastro/usuarios";
         return navegar;
     }
     
     public String usuariosView() {
+        HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
+        request.getSession().setAttribute("selectedUsuario", selectedUsuario);  
         String navegar = "/pages/cadastro/usuariosView";
         return navegar;
     }
     
     public String usuariosEdit() {
+        HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
+        request.getSession().setAttribute("selectedUsuario", selectedUsuario);  
         String navegar = "/pages/cadastro/usuariosEdit";
         return navegar;
     }
     
     public String usuariosNew() {
+        HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
+        request.getSession().setAttribute("selectedUsuario", new PubUsuario());  
         String navegar = "/pages/cadastro/usuariosNew";
         return navegar;
+    }
+
+    public String alterarUsuario() {
+        String navegar = "/pages/cadastro/usuarios";
+        try {
+            usuDAO.updateUsuario(selectedUsuario);
+            msg = "cadastro do usuario alterado com sucesso";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+        } catch (SQLException ex) {
+            msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
+            Logger.getLogger(UsuariosCadastroController.class.getName()).log(Level.SEVERE, null, ex);
+            navegar = "/pages/cadastro/usuariosEdit";
+        }
+        return navegar;
+    }
+    
+    public String inserirUsuario() throws EmailException {
+        String navegar = "/pages/cadastro/usuarios";
+        try {
+            // codigo de verificação
+            GeraCodigoVerificacao gera = new GeraCodigoVerificacao(); //você pode usar outras máscaras 
+            // set usuario
+            String codigo = gera.geraCodigo();
+            usu.setDataCadastro(new Date());
+            usu.setSenha(Criptografia.criptografar(codigo));
+            usu.setCodigoVerificacao(codigo);
+            usu.setDataRessetSenha(new Date());
+            usu.setDataValidacaoResset(new Date());
+            usu.setAtivo(true);
+            usu.setMaster(true);
+            usuDAO.inserirUsuario(selectedUsuario);
+            // enviar mail
+            enviarMailCadastro();
+            msg = "Cadastro do usuario realizado com sucesso.";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+            msg = "Enviamos um email com o codigo de verificação e senha para o email do usuario.";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+        } catch (SQLException ex) {
+            msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
+            Logger.getLogger(UsuariosCadastroController.class.getName()).log(Level.SEVERE, null, ex);
+            navegar = "/pages/cadastro/usuariosNew";
+        }
+        return navegar;
+    }
+    
+     // enviar email de boas vindas ao novo usuario
+    private void enviarMailCadastro() throws EmailException, SQLException {
+        // busca config da empresa padrão (jvmdsoftware)
+        PubConfigEmpresaDAO confDAO = new PubConfigEmpresaDAO();
+        PubConfigEmpresa conf = confDAO.getById(1);
+        // envia email
+        EnviarMail mail = new EnviarMail();
+        String mensagem = "Bem vindo ao sistema " + selectedUsuario.getNomeUsuario() + "!\n \n" +
+                "Seu codigo de verificação é: " + selectedUsuario.getCodigoVerificacao() + ". \n" +
+                "Sua senha de acesso é: " + selectedUsuario.getCodigoVerificacao() + ". \n" +
+                "Faça o login e informe seu codigo de verificação para ativar sua conta.";
+        mail.emailSimples(conf, selectedUsuario, mensagem, "Bem vindo!");
     }
     
     // change empresa
@@ -86,6 +185,11 @@ public class UsuariosCadastroController {
         } else {
             listUsuarios = usuDAO.listUsuariosByEmpresa(empDAO.getById(empresa));
         }
+    }
+    
+    // change tipo de cadastro
+    public void changeEstado() throws SQLException {
+        listMunicipio = municDAO.listMunicipiosByEstado(estDAO.getById(estado));
     }
 
     
@@ -148,6 +252,38 @@ public class UsuariosCadastroController {
 
     public void setSelectedUsuario(PubUsuario selectedUsuario) {
         this.selectedUsuario = selectedUsuario;
+    }
+
+    public List<PubEstado> getListEstado() {
+        return listEstado;
+    }
+
+    public void setListEstado(List<PubEstado> listEstado) {
+        this.listEstado = listEstado;
+    }
+
+    public List<PubMunicipio> getListMunicipio() {
+        return listMunicipio;
+    }
+
+    public void setListMunicipio(List<PubMunicipio> listMunicipio) {
+        this.listMunicipio = listMunicipio;
+    }
+
+    public int getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(int municipio) {
+        this.municipio = municipio;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
     
     
