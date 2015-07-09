@@ -26,7 +26,7 @@
             <f:facet name="header">
                 <h:outputText value="MODULO CADASTROS - usuários"/>
                 <div align="center">
-                <p:panelGrid columns="3">
+                    <p:panelGrid columns="3" layout="grid">
                 <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp"/>
                 <p:selectOneMenu id="emp" label="labEmp" value="#{usuariosCadastroController.empresa}">
                     <p:ajax update="@form" process="@form" listener="#{usuariosCadastroController.changeEmpresa}"/>
@@ -59,7 +59,8 @@
                         <f:setPropertyActionListener value="#{user}" target="#{usuariosCadastroController.selectedUsuario}"/>
                         <p:tooltip value="editar usuario" for="btnEdit"/>
                     </p:commandButton>
-                    <p:commandButton id="btnAtivar" icon="icon-confirmar" action="#">
+                    <p:commandButton id="btnAtivar" icon="icon-confirmar" actionListener="#{usuariosCadastroController.setTextAtivaUsuario}"
+                                     rendered="#{user.master == false}">
                         <f:setPropertyActionListener value="#{user}" target="#{usuariosCadastroController.selectedUsuario}"/>
                         <p:tooltip value="ativar / inativar usuário" for="btnAtivar"/>
                     </p:commandButton>
@@ -68,6 +69,10 @@
 
         </p:panel>
         <div style="clear:both" />
+        <p:dialog id="AtivarUsuario" header="Ativar / inativar usuarios">
+            <br/><br/>
+            <h:outputText value="#{usuariosCadastroController.textAtivaUsuario}"/>
+        </p:dialog>
     </h:form>
     </ui:define>  
 </ui:composition>  

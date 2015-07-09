@@ -18,6 +18,7 @@ import br.com.jvmsoftware.entities.PubUsuario;
 import br.com.jvmsoftware.util.Criptografia;
 import br.com.jvmsoftware.util.EnviarMail;
 import br.com.jvmsoftware.util.GeraCodigoVerificacao;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -37,7 +38,7 @@ import org.apache.commons.mail.EmailException;
  */
 @ManagedBean
 @ViewScoped
-public class UsuariosCadastroController {
+public class UsuariosCadastroController implements Serializable{
     
     private final PubEmpresaDAO empDAO = new PubEmpresaDAO();
     private final PubUsuarioDAO usuDAO = new PubUsuarioDAO();
@@ -54,6 +55,7 @@ public class UsuariosCadastroController {
     private boolean renderEmpresa = false;
     private int empresa = 0;
     private String msg;
+    private String textAtivaUsuario;
     
     /**
      * Creates a new instance of UsuariosCadastroController
@@ -114,7 +116,9 @@ public class UsuariosCadastroController {
     
     public String usuariosNew() {
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
-        request.getSession().setAttribute("selectedUsuario", new PubUsuario());  
+        selectedUsuario = new PubUsuario();
+        selectedUsuario.setPubEmpresa(usu.getPubEmpresa());
+        request.getSession().setAttribute("selectedUsuario", selectedUsuario);
         String navegar = "/pages/cadastro/usuariosNew";
         return navegar;
     }
@@ -133,33 +137,79 @@ public class UsuariosCadastroController {
         }
         return navegar;
     }
+
     
-    public String inserirUsuario() throws EmailException {
+    public String inativaUsuario() {
         String navegar = "/pages/cadastro/usuarios";
+        if (selectedUsuario.getAtivo() == true) {
+            selectedUsuario.setAtivo(false);
+            msg = "usuario inativado com sucesso.";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+        } else {
+            selectedUsuario.setAtivo(true);
+            msg = "usuario ativado com sucesso.";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+        }
         try {
-            // codigo de verificação
-            GeraCodigoVerificacao gera = new GeraCodigoVerificacao(); //você pode usar outras máscaras 
-            // set usuario
-            String codigo = gera.geraCodigo();
-            usu.setDataCadastro(new Date());
-            usu.setSenha(Criptografia.criptografar(codigo));
-            usu.setCodigoVerificacao(codigo);
-            usu.setDataRessetSenha(new Date());
-            usu.setDataValidacaoResset(new Date());
-            usu.setAtivo(true);
-            usu.setMaster(true);
-            usuDAO.inserirUsuario(selectedUsuario);
-            // enviar mail
-            enviarMailCadastro();
-            msg = "Cadastro do usuario realizado com sucesso.";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
-            msg = "Enviamos um email com o codigo de verificação e senha para o email do usuario.";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+            if (selectedUsuario.getAtivo() == true) {
+                selectedUsuario.setAtivo(false);
+                msg = "usuario inativado com sucesso.";
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+            } else {
+                selectedUsuario.setAtivo(true);
+                msg = "usuario ativado com sucesso.";
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+            }
+            usuDAO.updateUsuario(selectedUsuario);
         } catch (SQLException ex) {
-            msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
             Logger.getLogger(UsuariosCadastroController.class.getName()).log(Level.SEVERE, null, ex);
-            navegar = "/pages/cadastro/usuariosNew";
+            msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+        }
+        return navegar;
+    }
+
+    public void setTextAtivaUsuario() {
+        if (selectedUsuario.getAtivo() == true) {
+            textAtivaUsuario = "Você tem certeza que deseja inativar o usario " + selectedUsuario + "?";
+        } else {
+            textAtivaUsuario = "Você tem certeza que deseja ativar o usario " + selectedUsuario + "?";
+        }
+    }
+
+    
+    public String inserirUsuario() throws EmailException, SQLException {
+        String navegar = "/pages/cadastro/usuarios";
+        PubUsuario usuConfere = usuDAO.getUsuariosByMail(selectedUsuario.getEmail());
+        if (usuConfere != null) {
+            msg = "Email já cadastrado, clique em recuperar senha.";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, msg, msg));
+        } else {
+            try {
+                // codigo de verificação
+                GeraCodigoVerificacao gera = new GeraCodigoVerificacao(); //você pode usar outras máscaras 
+                // set usuario
+                String codigo = gera.geraCodigo();
+                selectedUsuario.setDataCadastro(new Date());
+                selectedUsuario.setSenha(Criptografia.criptografar(codigo));
+                selectedUsuario.setCodigoVerificacao(codigo);
+                selectedUsuario.setDataRessetSenha(new Date());
+                selectedUsuario.setDataValidacaoResset(new Date());
+                selectedUsuario.setAtivo(true);
+                selectedUsuario.setMaster(true);
+                usuDAO.inserirUsuario(selectedUsuario);
+                // enviar mail
+                enviarMailCadastro();
+                msg = "Cadastro do usuario realizado com sucesso.";
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+                msg = "Enviamos um email com o codigo de verificação e senha para o email do usuario.";
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+            } catch (SQLException ex) {
+                msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
+                Logger.getLogger(UsuariosCadastroController.class.getName()).log(Level.SEVERE, null, ex);
+                navegar = "/pages/cadastro/usuariosNew";
+            }
         }
         return navegar;
     }
@@ -284,6 +334,14 @@ public class UsuariosCadastroController {
 
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+
+    public String getTextAtivaUsuario() {
+        return textAtivaUsuario;
+    }
+
+    public void setTextAtivaUsuario(String textAtivaUsuario) {
+        this.textAtivaUsuario = textAtivaUsuario;
     }
     
     
