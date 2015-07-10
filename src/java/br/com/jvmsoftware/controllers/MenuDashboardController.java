@@ -6,6 +6,7 @@
 package br.com.jvmsoftware.controllers;
 
 import br.com.jvmsoftware.entities.PubUsuario;
+import java.util.StringTokenizer;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 public class MenuDashboardController {
 
     private PubUsuario usu = new PubUsuario();
+    private String primeiroNome;
 
     /**
      * Creates a new instance of MenuController
@@ -29,6 +31,7 @@ public class MenuDashboardController {
     public void Init(){
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
         usu = (PubUsuario)request.getSession().getAttribute("usuario");
+        setNome();
     } 
     
     /**
@@ -47,6 +50,18 @@ public class MenuDashboardController {
         return "/pages/cadastro/index.xhtml";
     }
 
+    
+    private void setNome() {
+        StringTokenizer nome = new StringTokenizer(usu.getNomeUsuario()," ");
+        primeiroNome = nome.nextToken();
+    }
+    
+    
+    /**
+     * getters & setters
+     * @return 
+     */
+    
     public PubUsuario getUsu() {
         return usu;
     }
@@ -54,11 +69,15 @@ public class MenuDashboardController {
     public void setUsu(PubUsuario usu) {
         this.usu = usu;
     }
+
+    public String getPrimeiroNome() {
+        return primeiroNome;
+    }
+
+    public void setPrimeiroNome(String primeiroNome) {
+        this.primeiroNome = primeiroNome;
+    }
     
     
-    
-    /**
-     * getters & setters
-     */
     
 }

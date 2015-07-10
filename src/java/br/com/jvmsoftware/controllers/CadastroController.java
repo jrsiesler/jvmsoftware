@@ -90,9 +90,17 @@ public final class CadastroController implements Serializable{
         step = (String)request.getSession().getAttribute("step");
         if (usu != null) {
             try {
-                estado = usu.getPubEstado().getIdEstado();
-                this.listMunicipio = municDAO.listMunicipiosByEstado(usu.getPubEstado());
-                municipio = usu.getPubMunicipio().getIdMunicipio();
+                if (usu.getPubEstado() != null) {
+                    estado = usu.getPubEstado().getIdEstado();
+                } else {
+                    estado = 0;
+                }
+                if (usu.getPubMunicipio() != null) {
+                    listMunicipio = municDAO.listMunicipiosByEstado(usu.getPubEstado());
+                    municipio = usu.getPubMunicipio().getIdMunicipio();
+                } else {
+                    municipio = 0;
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(CadastroController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -169,6 +177,8 @@ public final class CadastroController implements Serializable{
     public String validaSenhaRecuperada() throws SQLException {
         String navegar = "/recuperaSenha1";
         if (verificaSenhaRecuperada()) {
+            HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
+            request.getSession().setAttribute("usuario", usu);  
             navegar = "/alterarSenhaRecuperada";
         }
         return navegar;
@@ -361,7 +371,7 @@ public final class CadastroController implements Serializable{
             }
             else {
                 msg = "Bem vindo a jvmdsoftware";
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
                 val = true;
                 usu = usuConfere;
                 return val;
@@ -381,7 +391,7 @@ public final class CadastroController implements Serializable{
             usu.setDataValidacaoResset(new Date());
             usuDAO.updateUsuario(usu);
             msg = "Senha alterada com sucesso. Faça o login.";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
             val = true;
         }
         return val;

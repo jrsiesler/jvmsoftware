@@ -26,16 +26,16 @@
             <f:facet name="header">
                 <h:outputText value="MODULO CADASTROS - usuários"/>
                 <div align="center">
-                    <p:panelGrid columns="3" layout="grid">
-                <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp"/>
-                <p:selectOneMenu id="emp" label="labEmp" value="#{usuariosCadastroController.empresa}">
-                    <p:ajax update="@form" process="@form" listener="#{usuariosCadastroController.changeEmpresa}"/>
-                    <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
-                    <f:selectItems value="#{usuariosCadastroController.listEmpresas}" var="emp" itemLabel="#{emp.idEmpresa} - #{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
-                </p:selectOneMenu>
-                <p:commandButton id="btnNew" icon="icon-novo-usuario" action="#{usuariosCadastroController.usuariosNew}">
-                    <p:tooltip value="visualizar usuario" for="btnNew"/>
-                </p:commandButton>
+                <p:panelGrid columns="3" layout="grid">
+                    <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp" rendered="#{(menuDashboardController.usu.pubEmpresa.idEmpresa == 1) == true}"/>
+                    <p:selectOneMenu id="emp" label="labEmp" value="#{usuariosCadastroController.empresa}" rendered="#{(menuDashboardController.usu.pubEmpresa.idEmpresa == 1) == true}">
+                        <p:ajax update="@form" process="@form" listener="#{usuariosCadastroController.changeEmpresa}"/>
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{usuariosCadastroController.listEmpresas}" var="emp" itemLabel="#{emp.idEmpresa} - #{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
+                    </p:selectOneMenu>
+                    <p:commandButton id="btnNew" icon="icon-novo-usuario" action="#{usuariosCadastroController.usuariosNew}">
+                        <p:tooltip value="visualizar usuario" for="btnNew"/>
+                    </p:commandButton>
                 </p:panelGrid>
                 </div>
             </f:facet>

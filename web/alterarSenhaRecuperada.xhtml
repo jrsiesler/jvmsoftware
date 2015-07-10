@@ -29,7 +29,7 @@
                 <h:outputText value=""/><h:outputText value=""/><h:outputText value=""/>
                 <p:outputLabel id="labMail" value="email"/>
                 <p:inputText id="mail" label="labMail" rendered="true" disabled="true"
-                             value="#{cadastroController.email}" required="true" 
+                             value="#{cadastroController.usu.email}" required="true" 
                              requiredMessage="Informe seu endereço de email!"
                              validatorMessage="Formato de email inválido!">
                     <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -69,8 +69,7 @@
                 <h:outputText value="Esqueceu sua senha?"/>
                 <h:outputText value="Não está cadastrado?"/>
                 <p:commandLink action="#{menuController.recuperaSenha}" value="recuperar senha"/>
-                <p:commandLink action="#{menuController.cadastro} "value="cadastre-se"/>
-                
+                <p:commandLink action="#{menuController.cadastro}" value="cadastre-se"/>                
             </p:panelGrid>
             </center>
         </p:panel>
