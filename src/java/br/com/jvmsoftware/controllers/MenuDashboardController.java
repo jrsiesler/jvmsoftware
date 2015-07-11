@@ -39,15 +39,37 @@ public class MenuDashboardController {
      * @return 
      */
     public String dashboard() {
-        return "/pages/dashboard.xhtml";
+        return "/pages/dashboard";
     }
+
+    
+    public String index() {
+        return "/pages/cadastro/index";
+    }
+
+    public String conta() {
+        return "/pages/cadastro/user";
+    }
+
+    public String usuarios() {
+        return "/pages/cadastro/usuarios";
+    }
+    
+    public String empresa() {
+        return "/pages/cadastro/empresa";
+    }
+    
+    public String sistemas() {
+        return "/pages/cadastro/sistemas";
+    }
+
     
     /**
      * submenu Sistemas
      * @return 
      */
     public String cadIndex() {
-        return "/pages/cadastro/index.xhtml";
+        return "/pages/cadastro/index";
     }
 
     
