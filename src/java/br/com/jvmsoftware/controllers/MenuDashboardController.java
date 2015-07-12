@@ -65,6 +65,30 @@ public class MenuDashboardController {
     public String sistemas() {
         return "/pages/cadastro/sistemas";
     }
+    
+    public String configuracao() {
+        return "/pages/cadastro/configuracao";
+    }
+
+    public String clientes() {
+        return "/pages/cadastro/clientes";
+    }
+
+    public String forncedores() {
+        return "/pages/cadastro/fornecedores";
+    }
+
+    public String funcionarios() {
+        return "/pages/cadastro/funcionarios";
+    }
+
+    public String produtos() {
+        return "/pages/cadastro/produtos";
+    }
+
+    public String servicos() {
+        return "/pages/cadastro/servicos";
+    }
 
     
     /**
