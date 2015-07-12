@@ -57,18 +57,16 @@ public class DashboardController implements Serializable{
      * @return 
      */
     public String cadastrarEmpresa() {
-        String viewId = SecurityUtil.logIn("/pages/wizard");
+        String viewId = SecurityUtil.logIn("/pages/usuarioEmpresa");
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
         request.getSession().setAttribute("usuario", usu);  
-        request.getSession().setAttribute("step", "empresa");  
         return viewId;
     }
     
     public String configurar() {
-        String viewId = SecurityUtil.logIn("/pages/wizard");
+        String viewId = SecurityUtil.logIn("/pages/UsuarioNegocio");
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
         request.getSession().setAttribute("usuario", usu);  
-        request.getSession().setAttribute("step", "negocio");  
         return viewId;
     }
     

@@ -5,6 +5,7 @@
  */
 package br.com.jvmsoftware.controllers.cadastros;
 
+import br.com.jvmsoftware.controllers.CadastroController;
 import br.com.jvmsoftware.daos.PubEmpresaDAO;
 import br.com.jvmsoftware.daos.PubEstadoDAO;
 import br.com.jvmsoftware.daos.PubMunicipioDAO;
@@ -117,7 +118,27 @@ public class UserCadastroController {
         return navegar;
     }
 
-
+    /***
+     * metodos utilizados nas telas de cadastro de usuários /pages/cadastro
+     */
+    public void gravarUsuario() {
+        try {
+            if (estado != usu.getPubEstado().getIdEstado()) {
+                usu.setPubEstado(estDAO.getById(estado));
+            }
+            if (municipio != usu.getPubMunicipio().getIdMunicipio()) {
+                usu.setPubMunicipio(municDAO.getById(municipio));
+            }
+            usuDAO.updateUsuario(usu);
+            msg = "Usuário gravado com sucesso";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+        } catch (SQLException ex) {
+            msg = "Problemas ao gravar alterações do usuário";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
+            Logger.getLogger(CadastroController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
     /** validadores
      * @param fc

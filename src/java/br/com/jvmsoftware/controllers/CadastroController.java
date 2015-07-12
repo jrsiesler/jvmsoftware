@@ -141,10 +141,31 @@ public final class CadastroController implements Serializable{
         String navegar;
         // verifica se o código de verificação foi digitado corretamente
         if (verificaCodigo()) {
-            navegar = "/pages/empresaCadastro4";
+            msg = "Validação do cadastro realizada com sucesso.";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+            if (usu.getPubEmpresa() != null) {
+                navegar = "/pages/dashboard";
+            } else {
+                msg = "Falta pouco. Configure a empresa para utilizar o sistema.";
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, msg, msg));
+                navegar = "/pages/usuarioEmpresa";
+            }
         }
         else {
-            navegar = "/pages/empresaCadastro3";
+            msg = "Codigo de verificação inválido. Verifique seu e-mail.";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
+            navegar = "/pages/usuarioValidacao";
+        }
+        return navegar;
+    }
+    
+    // inserir empresa
+    public String cadastrarEmpresa() {
+        String navegar;
+        if (insereEmpresa()) {
+            navegar = "/pages/usuarioNegocio";
+        } else {
+            navegar = "/pages/usuarioEmpresa";
         }
         return navegar;
     }
@@ -420,7 +441,7 @@ public final class CadastroController implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
         } catch (SQLException ex) {
             ok = false;
-            msg = "Empresa não pode ser inserida";
+            msg = "Empresa não pode ser inserida. Contacte suporte tecnico.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
             Logger.getLogger(CadastroController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -437,38 +458,7 @@ public final class CadastroController implements Serializable{
      * @throws EmailException
      * @throws ParseException 
      */
-    
-    // eventos do componenete wizard
-    public String onFlowProcess(FlowEvent event) throws SQLException, EmailException, ParseException {
-        if ("registro".equals(event.getOldStep())) {
-            //RequestContext.getCurrentInstance().execute("PF('wiz').hideBackNav();");
-            return event.getNewStep();
-        }
-        else if ("validacao".equals(event.getOldStep())) {
-            //RequestContext.getCurrentInstance().execute("PF('wiz').hideBackNav();");
-            if (verificaCodigo()) {
-                return event.getNewStep();
-            }
-            else {
-                return event.getOldStep();
-            }
-        }
-        else if ("empresa".equals(event.getOldStep())) {
-            //RequestContext.getCurrentInstance().execute("PF('wiz').hideBackNav();");
-            if (insereEmpresa()) {
-                return event.getNewStep();
-            }
-            else {
-                return event.getNewStep();
-            }
-        }
-        else {
-            return event.getNewStep();
-        }
-    
-    }
-    
-    
+        
     
     // change tipo de cadastro
     public void changeTipoCadastro() throws SQLException {
@@ -514,26 +504,6 @@ public final class CadastroController implements Serializable{
     }
 
     
-    /***
-     * metodos utilizados nas telas de cadastro de usuários /pages/cadastro
-     */
-    public void gravarUsuario() {
-        try {
-            if (estado != usu.getPubEstado().getIdEstado()) {
-                usu.setPubEstado(estDAO.getById(estado));
-            }
-            if (municipio != usu.getPubMunicipio().getIdMunicipio()) {
-                usu.setPubMunicipio(municDAO.getById(municipio));
-            }
-            usuDAO.updateUsuario(usu);
-            msg = "Usuário gravado com sucesso";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
-        } catch (SQLException ex) {
-            msg = "Problemas ao gravar alterações do usuário";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
-            Logger.getLogger(CadastroController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
     
     
     /*** getters & setters

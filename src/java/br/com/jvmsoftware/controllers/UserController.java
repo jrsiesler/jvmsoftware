@@ -92,11 +92,11 @@ public class UserController implements Serializable {
             msg = "Bem vindo " + usu.getNomeUsuario() + ".";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
             if (usu.getDataVerificacao() == null) {
-                viewId = SecurityUtil.logIn("/pages/wizard");
+                viewId = SecurityUtil.logIn("/pages/usuarioValidacao");
                 // complemento a mensagem
                 msg = "Informe o código de verificação enviado ao seu email para finalizar o cadastro.";
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
-                // envio os parametros para serem recuperados pelo wizardController
+                // envio os parametros para serem recuperados pelo cadastro
                 HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
                 request.getSession().setAttribute("usuario", usu);  
                 request.getSession().setAttribute("step", "validacao");  
