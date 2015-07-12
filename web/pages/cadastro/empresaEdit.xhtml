@@ -22,7 +22,7 @@
         
     <h:form>
         <p:messages id="msgs"/>
-        <p:panel id="dash" header="MODULO CADASTROS - empresa"  style="height: 590px; text-align: center; alignment-baseline: central">
+        <p:panel id="dash" header="MODULO CADASTROS - empresa - alterar"  style="height: 590px; text-align: center; alignment-baseline: central">
             <br/>
             <p:panelGrid columns="2" layout="grid">
                 
@@ -39,17 +39,17 @@
                 </p:inputText>
 
                 <p:outputLabel id="labFantasia" value="Fantasia"/>
-                <p:inputText id="fantasia" label="labFantasia" rendered="true" disabled="true"
+                <p:inputText id="fantasia" label="labFantasia" rendered="true"
                              value="#{empresaController.empresa.fantasia}">
                 </p:inputText>
 
                 <p:outputLabel id="labCnpj" value="CNPJ"/>
-                <p:inputMask mask="999.999.999/9999-99" id="cnpj" label="labCnpj" disabled="true"
+                <p:inputMask mask="999.999.999/9999-99" id="cnpj" label="labCnpj"
                              value="#{empresaController.empresa.cnpjEmpresa}">
                 </p:inputMask>
                 
                 <p:outputLabel id="labMail" value="Email responsavel"/>
-                <p:inputText id="mail" label="labMail" rendered="true" disabled="true"
+                <p:inputText id="mail" label="labMail" rendered="true"
                              value="#{empresaController.empresa.emailResponsavel}"
                              validatorMessage="Formato de email inválido!">
                     <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -57,52 +57,52 @@
                 </p:inputText>
 
                 <p:outputLabel id="labEst" value="Selecione o estado" for="est"/>
-                <h:selectOneMenu id="est" label="labEst" value="#{empresaController.estado}" disabled="true">
+                <h:selectOneMenu id="est" label="labEst" value="#{empresaController.estado}">
                     <p:ajax update="@form" process="@form" listener="#{empresaController.changeEstado}"/>
                     <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
                     <f:selectItems value="#{empresaController.listEstado}" var="est" itemLabel="#{est.uf} - #{est.estado}" itemValue="#{est.idEstado}"/>
                 </h:selectOneMenu>
 
                 <p:outputLabel id="labMun" value="Selecione o municipio" for="mun"/>
-                <h:selectOneMenu id="mun" label="labMun" value="#{empresaController.municipio}" disabled="true">
+                <h:selectOneMenu id="mun" label="labMun" value="#{empresaController.municipio}">
                     <p:ajax update="@form" process="@form"/>
                     <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
                     <f:selectItems value="#{empresaController.listMunicipio}" var="mun" itemLabel="#{mun.municipio}" itemValue="#{mun.idMunicipio}"/>
                 </h:selectOneMenu>
 
                 <p:outputLabel id="labEndereco" value="endereco"/>
-                <p:inputText id="endereco" label="labEndereco" rendered="true" disabled="true"
+                <p:inputText id="endereco" label="labEndereco" rendered="true"
                              value="#{empresaController.empresa.endereco}">
                 </p:inputText>
 
                 <p:outputLabel id="labNumero" value="numero"/>
-                <p:inputText type="float" id="numero" label="labNumero" rendered="true" disabled="true"
+                <p:inputText type="float" id="numero" label="labNumero" rendered="true"
                              value="#{empresaController.empresa.numero}">
                 </p:inputText>
                 
                 <p:outputLabel id="labBairro" value="bairro"/>
-                <p:inputText id="bairro" label="labBairro" rendered="true" disabled="true"
+                <p:inputText id="bairro" label="labBairro" rendered="true"
                              value="#{empresaController.empresa.bairro}">
                 </p:inputText>
 
                 <p:outputLabel id="labComplemento" value="complemento"/>
-                <p:inputText id="complemento" label="labComplemento" rendered="true" disabled="true"
+                <p:inputText id="complemento" label="labComplemento" rendered="true"
                              value="#{empresaController.empresa.complemento}">
                 </p:inputText>
 
                 <p:outputLabel id="labCep" value="CEP"/>
-                <p:inputMask mask="99.999-999" id="cep" label="labCep" disabled="true"
+                <p:inputMask mask="99.999-999" id="cep" label="labCep"
                              value="#{empresaController.empresa.cep}">
                 </p:inputMask>
                             
                 <p:outputLabel id="labTelefone" value="telefone"/>
-                <p:inputMask mask="(99)999999999" id="telefone" label="labTelefone" disabled="true"
+                <p:inputMask mask="(99)999999999" id="telefone" label="labTelefone"
                              value="#{empresaController.empresa.telefone}">
                 </p:inputMask>
                 
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{empresaController.alterarEmpresa}" value="editar" icon="icon-editar"/>
+                        <p:commandButton action="#{empresaController.finalizaAlterarEmpresa}" value="editar" icon="icon-editar"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

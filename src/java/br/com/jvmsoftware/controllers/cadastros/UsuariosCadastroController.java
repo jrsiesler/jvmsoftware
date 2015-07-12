@@ -196,7 +196,7 @@ public class UsuariosCadastroController implements Serializable{
                 selectedUsuario.setDataRessetSenha(new Date());
                 selectedUsuario.setDataValidacaoResset(new Date());
                 selectedUsuario.setAtivo(true);
-                selectedUsuario.setMaster(true);
+                selectedUsuario.setMaster(false);
                 usuDAO.inserirUsuario(selectedUsuario);
                 // enviar mail
                 enviarMailCadastro();

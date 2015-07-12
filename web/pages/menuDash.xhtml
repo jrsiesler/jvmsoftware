@@ -24,7 +24,7 @@ and open the template in the editor.
                         <p:menuitem icon="icon-home" value="inicio" action="#{menuDashboardController.dashboard}"/>
                         
                         <p:submenu label="cadastro" icon="icon-cadastros">
-                            <p:submenu label="controle de acesso" icon="icon-controle-acesso" >
+                            <p:submenu label="controle de acesso" icon="icon-controle-acesso" rendered="#{menuDashboardController.usu.master}">
                                 <p:menuitem value="usuarios" action="#{menuDashboardController.usuarios}" icon="icon-usuarios"/>
                                 <p:menuitem value="empresa" action="#{menuDashboardController.empresa}" icon="icon-empresa"/>
                                 <p:menuitem value="sistemas" action="#{menuDashboardController.sistemas}" icon="icon-sistemas"/>

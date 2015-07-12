@@ -24,11 +24,11 @@
         <p:messages id="msgs"/>
         <p:panel id="dash" style="height: 590px; text-align: center; alignment-baseline: central">
             <f:facet name="header">
-                <h:outputText value="MODULO CADASTROS - usuários"/>
+                <h:outputText value="MODULO CADASTROS - usuarios"/>
                 <div align="center">
                 <p:panelGrid columns="3" layout="grid">
-                    <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp" rendered="#{(menuDashboardController.usu.pubEmpresa.idEmpresa == 1) == true}"/>
-                    <p:selectOneMenu id="emp" label="labEmp" value="#{usuariosCadastroController.empresa}" rendered="#{(menuDashboardController.usu.pubEmpresa.idEmpresa == 1) == true}">
+                    <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp" rendered="#{usuariosCadastroController.renderEmpresa}"/>
+                    <p:selectOneMenu id="emp" label="labEmp" value="#{usuariosCadastroController.empresa}" rendered="#{usuariosCadastroController.renderEmpresa}">
                         <p:ajax update="@form" process="@form" listener="#{usuariosCadastroController.changeEmpresa}"/>
                         <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
                         <f:selectItems value="#{usuariosCadastroController.listEmpresas}" var="emp" itemLabel="#{emp.idEmpresa} - #{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
@@ -49,6 +49,10 @@
                 <p:column headerText="Ativo">
                     <p:selectBooleanCheckbox value="#{user.ativo}" disabled="true"/>
                 </p:column>
+                <p:column headerText="Master">
+                    <p:selectBooleanCheckbox value="#{user.master}" disabled="true"/>
+                </p:column>
+                
                 
                 <p:column headerText="detalhes">
                     <p:commandButton id="btnView" icon="icon-visualizar" action="#{usuariosCadastroController.usuariosView}">

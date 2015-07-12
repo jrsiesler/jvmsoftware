@@ -22,23 +22,31 @@
         
     <h:form>
         <p:messages id="msgs"/>
-        <p:panel id="dash" header="MODULO CADASTROS - minha conta"  style="height: 590px; text-align: center; alignment-baseline: central">
+        <p:panel id="dash" header="MODULO CADASTROS - usuario - incluir"  style="height: 590px; text-align: center; alignment-baseline: central">
             <br/>
             <p:panelGrid columns="2" layout="grid">
                 <p:outputLabel id="labNome" value="nome"/>
-                <p:inputText id="nome" label="labNome" rendered="true"
-                             value="#{usuariosCadastroController.selectedUsuario.nomeUsuario}">
+                <p:inputText id="nome" label="labNome" rendered="true" required="true"
+                             value="#{usuariosCadastroController.selectedUsuario.nomeUsuario}"
+                             requiredMessage="Informe o nome completo do usuario.">
+                    <p:ajax event="blur" update="msgs"/>
                 </p:inputText>
 
                 <p:outputLabel id="labDtNasc" value="nascimento"/>
-                <p:inputMask mask="99/99/9999" id="dtNasc1" label="labDtNasc"
-                             value="#{usuariosCadastroController.selectedUsuario.dataNascimento}">
+                <p:inputMask mask="99/99/9999" id="dtNasc1" label="labDtNasc" required="true"
+                             value="#{usuariosCadastroController.selectedUsuario.dataNascimento}"
+                             requiredMessage="Informe a data de nascimento do usuario.">
                     <f:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/>
+                    <p:ajax event="blur" update="msgs"/>
                 </p:inputMask>
 
                 <p:outputLabel id="labMail" value="email"/>
-                <p:inputText id="mail" label="labMail" rendered="true"
-                             value="#{usuariosCadastroController.selectedUsuario.email}">
+                <p:inputText id="mail" label="labMail" rendered="true" required="true"
+                             value="#{usuariosCadastroController.selectedUsuario.email}"
+                             requiredMessage="Informe seu endereço de email!"
+                             validatorMessage="Formato de email inválido!">
+                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                    <p:ajax event="blur" update="msgs"/>
                 </p:inputText>
 
                 <p:outputLabel id="labEmpresa" value="empresa"/>

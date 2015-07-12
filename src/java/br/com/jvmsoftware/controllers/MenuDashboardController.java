@@ -42,7 +42,10 @@ public class MenuDashboardController {
         return "/pages/dashboard";
     }
 
-    
+    /**
+     * menu cadastros
+     * @return 
+     */
     public String index() {
         return "/pages/cadastro/index";
     }
@@ -65,10 +68,10 @@ public class MenuDashboardController {
 
     
     /**
-     * submenu Sistemas
+     * acesso aos modulos pelo dashboard
      * @return 
      */
-    public String cadIndex() {
+    public String cadastros() {
         return "/pages/cadastro/index";
     }
 

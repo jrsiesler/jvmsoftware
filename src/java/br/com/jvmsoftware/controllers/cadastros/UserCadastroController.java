@@ -65,9 +65,14 @@ public class UserCadastroController {
         if (usu != null) {
             try {
                 listEstado = estDAO.listAllEstados();
-                estado = usu.getPubEstado().getIdEstado();
-                listMunicipio = municDAO.listMunicipiosByEstado(usu.getPubEstado());
-                municipio = usu.getPubMunicipio().getIdMunicipio();
+                if (usu.getPubEstado() != null) {
+                    estado = usu.getPubEstado().getIdEstado();
+                    listMunicipio = municDAO.listMunicipiosByEstado(usu.getPubEstado());
+                    if (usu.getPubMunicipio() != null) {
+                        municipio = usu.getPubMunicipio().getIdMunicipio();
+                    }
+                }
+                
             } catch (SQLException ex) {
                 Logger.getLogger(UserCadastroController.class.getName()).log(Level.SEVERE, null, ex);
             }
