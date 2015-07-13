@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 25/Jun/2015 16:01:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 12/Jul/2015 22:01:53 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.PubEmpresa" table="pub_empresa" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idEmpresa" type="java.lang.Integer">
@@ -55,11 +55,23 @@
         <property name="emailResponsavel" type="string">
             <column name="email_responsavel" length="50" />
         </property>
+        <set name="wflSituacaos" table="wfl_situacao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflSituacao" />
+        </set>
         <set name="pubConfigEmpresas" table="pub_config_empresa" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.PubConfigEmpresa" />
+        </set>
+        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa_solicitacao" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.SupSolicitacao" />
         </set>
         <set name="acsUsuarioSistemas" table="acs_usuario_sistema" inverse="true" lazy="true" fetch="select">
             <key>
@@ -67,17 +79,51 @@
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.AcsUsuarioSistema" />
         </set>
+        <set name="wflWorkflowsForEmpresaDestino" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa_destino" not-null="true">
+                    <comment>Empresa a qual dever&#195;&#161; dar andamento ao workflow</comment>
+                </column>
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflow" />
+        </set>
+        <set name="cadPessoas" table="cad_pessoa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadPessoa" />
+        </set>
+        <set name="wflWorkflowEventos" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa_evento" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
+        </set>
         <set name="acsEmpresaSistemas" table="acs_empresa_sistema" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.AcsEmpresaSistema" />
         </set>
+        <set name="supProjetos" table="sup_projeto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa_projeto" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.SupProjeto" />
+        </set>
         <set name="pubUsuarios" table="pub_usuario" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="empresa" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.PubUsuario" />
+        </set>
+        <set name="wflWorkflowsForEmpresaCriacao" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa_criacao" not-null="true">
+                    <comment>Empresa a qual o usuario que cadastrou o workflow pertence</comment>
+                </column>
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflow" />
         </set>
     </class>
 </hibernate-mapping>

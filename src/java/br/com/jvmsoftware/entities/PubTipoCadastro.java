@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 25/Jun/2015 16:01:27 by Hibernate Tools 4.3.1
+// Generated 12/Jul/2015 22:01:41 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,6 +14,7 @@ public class PubTipoCadastro  implements java.io.Serializable {
      private Integer idTipoCadastro;
      private String codigoTipoCadastro;
      private String descricaoTipoCadastro;
+     private Set<CadPessoa> cadPessoas = new HashSet<CadPessoa>(0);
      private Set<PubEmpresa> pubEmpresas = new HashSet<PubEmpresa>(0);
 
     public PubTipoCadastro() {
@@ -24,9 +25,10 @@ public class PubTipoCadastro  implements java.io.Serializable {
         this.codigoTipoCadastro = codigoTipoCadastro;
         this.descricaoTipoCadastro = descricaoTipoCadastro;
     }
-    public PubTipoCadastro(String codigoTipoCadastro, String descricaoTipoCadastro, Set<PubEmpresa> pubEmpresas) {
+    public PubTipoCadastro(String codigoTipoCadastro, String descricaoTipoCadastro, Set<CadPessoa> cadPessoas, Set<PubEmpresa> pubEmpresas) {
        this.codigoTipoCadastro = codigoTipoCadastro;
        this.descricaoTipoCadastro = descricaoTipoCadastro;
+       this.cadPessoas = cadPessoas;
        this.pubEmpresas = pubEmpresas;
     }
    
@@ -50,6 +52,13 @@ public class PubTipoCadastro  implements java.io.Serializable {
     
     public void setDescricaoTipoCadastro(String descricaoTipoCadastro) {
         this.descricaoTipoCadastro = descricaoTipoCadastro;
+    }
+    public Set<CadPessoa> getCadPessoas() {
+        return this.cadPessoas;
+    }
+    
+    public void setCadPessoas(Set<CadPessoa> cadPessoas) {
+        this.cadPessoas = cadPessoas;
     }
     public Set<PubEmpresa> getPubEmpresas() {
         return this.pubEmpresas;

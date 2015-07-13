@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 25/Jun/2015 16:01:27 by Hibernate Tools 4.3.1
+// Generated 12/Jul/2015 22:01:41 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -28,10 +28,17 @@ public class PubEmpresa  implements java.io.Serializable {
      private boolean ativo;
      private Float telefone;
      private String emailResponsavel;
+     private Set<WflSituacao> wflSituacaos = new HashSet<WflSituacao>(0);
      private Set<PubConfigEmpresa> pubConfigEmpresas = new HashSet<PubConfigEmpresa>(0);
+     private Set<SupSolicitacao> supSolicitacaos = new HashSet<SupSolicitacao>(0);
      private Set<AcsUsuarioSistema> acsUsuarioSistemas = new HashSet<AcsUsuarioSistema>(0);
+     private Set<WflWorkflow> wflWorkflowsForEmpresaDestino = new HashSet<WflWorkflow>(0);
+     private Set<CadPessoa> cadPessoas = new HashSet<CadPessoa>(0);
+     private Set<WflWorkflowEvento> wflWorkflowEventos = new HashSet<WflWorkflowEvento>(0);
      private Set<AcsEmpresaSistema> acsEmpresaSistemas = new HashSet<AcsEmpresaSistema>(0);
+     private Set<SupProjeto> supProjetos = new HashSet<SupProjeto>(0);
      private Set<PubUsuario> pubUsuarios = new HashSet<PubUsuario>(0);
+     private Set<WflWorkflow> wflWorkflowsForEmpresaCriacao = new HashSet<WflWorkflow>(0);
 
     public PubEmpresa() {
     }
@@ -45,7 +52,7 @@ public class PubEmpresa  implements java.io.Serializable {
         this.fantasia = fantasia;
         this.ativo = ativo;
     }
-    public PubEmpresa(PubEstado pubEstado, PubMunicipio pubMunicipio, PubTipoCadastro pubTipoCadastro, Float cnpjEmpresa, String razaoSocial, String fantasia, Float cep, String endereco, Float numero, String bairro, String complemento, Date dataCadastro, boolean ativo, Float telefone, String emailResponsavel, Set<PubConfigEmpresa> pubConfigEmpresas, Set<AcsUsuarioSistema> acsUsuarioSistemas, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<PubUsuario> pubUsuarios) {
+    public PubEmpresa(PubEstado pubEstado, PubMunicipio pubMunicipio, PubTipoCadastro pubTipoCadastro, Float cnpjEmpresa, String razaoSocial, String fantasia, Float cep, String endereco, Float numero, String bairro, String complemento, Date dataCadastro, boolean ativo, Float telefone, String emailResponsavel, Set<WflSituacao> wflSituacaos, Set<PubConfigEmpresa> pubConfigEmpresas, Set<SupSolicitacao> supSolicitacaos, Set<AcsUsuarioSistema> acsUsuarioSistemas, Set<WflWorkflow> wflWorkflowsForEmpresaDestino, Set<CadPessoa> cadPessoas, Set<WflWorkflowEvento> wflWorkflowEventos, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<SupProjeto> supProjetos, Set<PubUsuario> pubUsuarios, Set<WflWorkflow> wflWorkflowsForEmpresaCriacao) {
        this.pubEstado = pubEstado;
        this.pubMunicipio = pubMunicipio;
        this.pubTipoCadastro = pubTipoCadastro;
@@ -61,10 +68,17 @@ public class PubEmpresa  implements java.io.Serializable {
        this.ativo = ativo;
        this.telefone = telefone;
        this.emailResponsavel = emailResponsavel;
+       this.wflSituacaos = wflSituacaos;
        this.pubConfigEmpresas = pubConfigEmpresas;
+       this.supSolicitacaos = supSolicitacaos;
        this.acsUsuarioSistemas = acsUsuarioSistemas;
+       this.wflWorkflowsForEmpresaDestino = wflWorkflowsForEmpresaDestino;
+       this.cadPessoas = cadPessoas;
+       this.wflWorkflowEventos = wflWorkflowEventos;
        this.acsEmpresaSistemas = acsEmpresaSistemas;
+       this.supProjetos = supProjetos;
        this.pubUsuarios = pubUsuarios;
+       this.wflWorkflowsForEmpresaCriacao = wflWorkflowsForEmpresaCriacao;
     }
    
     public Integer getIdEmpresa() {
@@ -179,12 +193,26 @@ public class PubEmpresa  implements java.io.Serializable {
     public void setEmailResponsavel(String emailResponsavel) {
         this.emailResponsavel = emailResponsavel;
     }
+    public Set<WflSituacao> getWflSituacaos() {
+        return this.wflSituacaos;
+    }
+    
+    public void setWflSituacaos(Set<WflSituacao> wflSituacaos) {
+        this.wflSituacaos = wflSituacaos;
+    }
     public Set<PubConfigEmpresa> getPubConfigEmpresas() {
         return this.pubConfigEmpresas;
     }
     
     public void setPubConfigEmpresas(Set<PubConfigEmpresa> pubConfigEmpresas) {
         this.pubConfigEmpresas = pubConfigEmpresas;
+    }
+    public Set<SupSolicitacao> getSupSolicitacaos() {
+        return this.supSolicitacaos;
+    }
+    
+    public void setSupSolicitacaos(Set<SupSolicitacao> supSolicitacaos) {
+        this.supSolicitacaos = supSolicitacaos;
     }
     public Set<AcsUsuarioSistema> getAcsUsuarioSistemas() {
         return this.acsUsuarioSistemas;
@@ -193,6 +221,27 @@ public class PubEmpresa  implements java.io.Serializable {
     public void setAcsUsuarioSistemas(Set<AcsUsuarioSistema> acsUsuarioSistemas) {
         this.acsUsuarioSistemas = acsUsuarioSistemas;
     }
+    public Set<WflWorkflow> getWflWorkflowsForEmpresaDestino() {
+        return this.wflWorkflowsForEmpresaDestino;
+    }
+    
+    public void setWflWorkflowsForEmpresaDestino(Set<WflWorkflow> wflWorkflowsForEmpresaDestino) {
+        this.wflWorkflowsForEmpresaDestino = wflWorkflowsForEmpresaDestino;
+    }
+    public Set<CadPessoa> getCadPessoas() {
+        return this.cadPessoas;
+    }
+    
+    public void setCadPessoas(Set<CadPessoa> cadPessoas) {
+        this.cadPessoas = cadPessoas;
+    }
+    public Set<WflWorkflowEvento> getWflWorkflowEventos() {
+        return this.wflWorkflowEventos;
+    }
+    
+    public void setWflWorkflowEventos(Set<WflWorkflowEvento> wflWorkflowEventos) {
+        this.wflWorkflowEventos = wflWorkflowEventos;
+    }
     public Set<AcsEmpresaSistema> getAcsEmpresaSistemas() {
         return this.acsEmpresaSistemas;
     }
@@ -200,12 +249,26 @@ public class PubEmpresa  implements java.io.Serializable {
     public void setAcsEmpresaSistemas(Set<AcsEmpresaSistema> acsEmpresaSistemas) {
         this.acsEmpresaSistemas = acsEmpresaSistemas;
     }
+    public Set<SupProjeto> getSupProjetos() {
+        return this.supProjetos;
+    }
+    
+    public void setSupProjetos(Set<SupProjeto> supProjetos) {
+        this.supProjetos = supProjetos;
+    }
     public Set<PubUsuario> getPubUsuarios() {
         return this.pubUsuarios;
     }
     
     public void setPubUsuarios(Set<PubUsuario> pubUsuarios) {
         this.pubUsuarios = pubUsuarios;
+    }
+    public Set<WflWorkflow> getWflWorkflowsForEmpresaCriacao() {
+        return this.wflWorkflowsForEmpresaCriacao;
+    }
+    
+    public void setWflWorkflowsForEmpresaCriacao(Set<WflWorkflow> wflWorkflowsForEmpresaCriacao) {
+        this.wflWorkflowsForEmpresaCriacao = wflWorkflowsForEmpresaCriacao;
     }
 
 

@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 25/Jun/2015 16:01:27 by Hibernate Tools 4.3.1
+// Generated 12/Jul/2015 22:01:41 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -36,6 +36,10 @@ public class PubUsuario  implements java.io.Serializable {
      private Boolean master;
      private Set<AcsAcessoUsuarios> acsAcessoUsuarioses = new HashSet<AcsAcessoUsuarios>(0);
      private Set<CtrLog> ctrLogs = new HashSet<CtrLog>(0);
+     private Set<WflWorkflowEvento> wflWorkflowEventos = new HashSet<WflWorkflowEvento>(0);
+     private Set<WflWorkflow> wflWorkflows = new HashSet<WflWorkflow>(0);
+     private Set<SupProjeto> supProjetos = new HashSet<SupProjeto>(0);
+     private Set<SupSolicitacao> supSolicitacaos = new HashSet<SupSolicitacao>(0);
      private Set<AcsUsuarioSistema> acsUsuarioSistemas = new HashSet<AcsUsuarioSistema>(0);
 
     public PubUsuario() {
@@ -48,7 +52,7 @@ public class PubUsuario  implements java.io.Serializable {
         this.senha = senha;
         this.ativo = ativo;
     }
-    public PubUsuario(PubEmpresa pubEmpresa, PubEstado pubEstado, PubMunicipio pubMunicipio, Float cpfUsuario, String nomeUsuario, String email, String senha, Date dataNascimento, Date dataCadastro, Date dataVerificacao, String codigoVerificacao, boolean ativo, Date dataRessetSenha, Date dataValidacaoResset, String endereco, Float numero, String bairro, String complemento, Float cep, Float telefone, Boolean master, Set<AcsAcessoUsuarios> acsAcessoUsuarioses, Set<CtrLog> ctrLogs, Set<AcsUsuarioSistema> acsUsuarioSistemas) {
+    public PubUsuario(PubEmpresa pubEmpresa, PubEstado pubEstado, PubMunicipio pubMunicipio, Float cpfUsuario, String nomeUsuario, String email, String senha, Date dataNascimento, Date dataCadastro, Date dataVerificacao, String codigoVerificacao, boolean ativo, Date dataRessetSenha, Date dataValidacaoResset, String endereco, Float numero, String bairro, String complemento, Float cep, Float telefone, Boolean master, Set<AcsAcessoUsuarios> acsAcessoUsuarioses, Set<CtrLog> ctrLogs, Set<WflWorkflowEvento> wflWorkflowEventos, Set<WflWorkflow> wflWorkflows, Set<SupProjeto> supProjetos, Set<SupSolicitacao> supSolicitacaos, Set<AcsUsuarioSistema> acsUsuarioSistemas) {
        this.pubEmpresa = pubEmpresa;
        this.pubEstado = pubEstado;
        this.pubMunicipio = pubMunicipio;
@@ -72,6 +76,10 @@ public class PubUsuario  implements java.io.Serializable {
        this.master = master;
        this.acsAcessoUsuarioses = acsAcessoUsuarioses;
        this.ctrLogs = ctrLogs;
+       this.wflWorkflowEventos = wflWorkflowEventos;
+       this.wflWorkflows = wflWorkflows;
+       this.supProjetos = supProjetos;
+       this.supSolicitacaos = supSolicitacaos;
        this.acsUsuarioSistemas = acsUsuarioSistemas;
     }
    
@@ -242,6 +250,34 @@ public class PubUsuario  implements java.io.Serializable {
     
     public void setCtrLogs(Set<CtrLog> ctrLogs) {
         this.ctrLogs = ctrLogs;
+    }
+    public Set<WflWorkflowEvento> getWflWorkflowEventos() {
+        return this.wflWorkflowEventos;
+    }
+    
+    public void setWflWorkflowEventos(Set<WflWorkflowEvento> wflWorkflowEventos) {
+        this.wflWorkflowEventos = wflWorkflowEventos;
+    }
+    public Set<WflWorkflow> getWflWorkflows() {
+        return this.wflWorkflows;
+    }
+    
+    public void setWflWorkflows(Set<WflWorkflow> wflWorkflows) {
+        this.wflWorkflows = wflWorkflows;
+    }
+    public Set<SupProjeto> getSupProjetos() {
+        return this.supProjetos;
+    }
+    
+    public void setSupProjetos(Set<SupProjeto> supProjetos) {
+        this.supProjetos = supProjetos;
+    }
+    public Set<SupSolicitacao> getSupSolicitacaos() {
+        return this.supSolicitacaos;
+    }
+    
+    public void setSupSolicitacaos(Set<SupSolicitacao> supSolicitacaos) {
+        this.supSolicitacaos = supSolicitacaos;
     }
     public Set<AcsUsuarioSistema> getAcsUsuarioSistemas() {
         return this.acsUsuarioSistemas;

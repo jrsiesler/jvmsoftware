@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 25/Jun/2015 16:01:27 by Hibernate Tools 4.3.1
+// Generated 12/Jul/2015 22:01:41 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -17,9 +17,12 @@ public class PubSistema  implements java.io.Serializable {
      private String imagemSistema;
      private boolean ativo;
      private Set<PubMenu> pubMenus = new HashSet<PubMenu>(0);
+     private Set<SupSolicitacao> supSolicitacaos = new HashSet<SupSolicitacao>(0);
+     private Set<WflWorkflow> wflWorkflows = new HashSet<WflWorkflow>(0);
      private Set<CtrLog> ctrLogs = new HashSet<CtrLog>(0);
      private Set<AcsEmpresaSistema> acsEmpresaSistemas = new HashSet<AcsEmpresaSistema>(0);
      private Set<AcsUsuarioSistema> acsUsuarioSistemas = new HashSet<AcsUsuarioSistema>(0);
+     private Set<WflSituacao> wflSituacaos = new HashSet<WflSituacao>(0);
 
     public PubSistema() {
     }
@@ -30,15 +33,18 @@ public class PubSistema  implements java.io.Serializable {
         this.descricaoSistema = descricaoSistema;
         this.ativo = ativo;
     }
-    public PubSistema(String nomeSistema, String descricaoSistema, String imagemSistema, boolean ativo, Set<PubMenu> pubMenus, Set<CtrLog> ctrLogs, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<AcsUsuarioSistema> acsUsuarioSistemas) {
+    public PubSistema(String nomeSistema, String descricaoSistema, String imagemSistema, boolean ativo, Set<PubMenu> pubMenus, Set<SupSolicitacao> supSolicitacaos, Set<WflWorkflow> wflWorkflows, Set<CtrLog> ctrLogs, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<AcsUsuarioSistema> acsUsuarioSistemas, Set<WflSituacao> wflSituacaos) {
        this.nomeSistema = nomeSistema;
        this.descricaoSistema = descricaoSistema;
        this.imagemSistema = imagemSistema;
        this.ativo = ativo;
        this.pubMenus = pubMenus;
+       this.supSolicitacaos = supSolicitacaos;
+       this.wflWorkflows = wflWorkflows;
        this.ctrLogs = ctrLogs;
        this.acsEmpresaSistemas = acsEmpresaSistemas;
        this.acsUsuarioSistemas = acsUsuarioSistemas;
+       this.wflSituacaos = wflSituacaos;
     }
    
     public Integer getIdSistema() {
@@ -83,6 +89,20 @@ public class PubSistema  implements java.io.Serializable {
     public void setPubMenus(Set<PubMenu> pubMenus) {
         this.pubMenus = pubMenus;
     }
+    public Set<SupSolicitacao> getSupSolicitacaos() {
+        return this.supSolicitacaos;
+    }
+    
+    public void setSupSolicitacaos(Set<SupSolicitacao> supSolicitacaos) {
+        this.supSolicitacaos = supSolicitacaos;
+    }
+    public Set<WflWorkflow> getWflWorkflows() {
+        return this.wflWorkflows;
+    }
+    
+    public void setWflWorkflows(Set<WflWorkflow> wflWorkflows) {
+        this.wflWorkflows = wflWorkflows;
+    }
     public Set<CtrLog> getCtrLogs() {
         return this.ctrLogs;
     }
@@ -103,6 +123,13 @@ public class PubSistema  implements java.io.Serializable {
     
     public void setAcsUsuarioSistemas(Set<AcsUsuarioSistema> acsUsuarioSistemas) {
         this.acsUsuarioSistemas = acsUsuarioSistemas;
+    }
+    public Set<WflSituacao> getWflSituacaos() {
+        return this.wflSituacaos;
+    }
+    
+    public void setWflSituacaos(Set<WflSituacao> wflSituacaos) {
+        this.wflSituacaos = wflSituacaos;
     }
 
 

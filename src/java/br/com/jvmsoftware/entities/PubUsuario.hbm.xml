@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 25/Jun/2015 16:01:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 12/Jul/2015 22:01:53 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.PubUsuario" table="pub_usuario" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idUsuario" type="java.lang.Integer">
@@ -86,6 +86,30 @@
                 <column name="usuario" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CtrLog" />
+        </set>
+        <set name="wflWorkflowEventos" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario_evento" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
+        </set>
+        <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario_criacao" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflow" />
+        </set>
+        <set name="supProjetos" table="sup_projeto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario_criacao" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.SupProjeto" />
+        </set>
+        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario_abertura" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.SupSolicitacao" />
         </set>
         <set name="acsUsuarioSistemas" table="acs_usuario_sistema" inverse="true" lazy="true" fetch="select">
             <key>
