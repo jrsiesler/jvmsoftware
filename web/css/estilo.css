@@ -37,6 +37,14 @@ and open the template in the editor.
     background-image: url("../images/icons/work11.png") !important;  
 }
 
+.icon-suporte {  
+    background-image: url("../images/icons/tele-assistance.png") !important;  
+}
+
+.icon-comercial {  
+    background-image: url("../images/icons/tag31.png") !important;  
+}
+
 /* icones comuns */
 .icon-home {  
     background-image: url("../images/icons/home.png") !important;  
