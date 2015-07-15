@@ -45,6 +45,30 @@ and open the template in the editor.
     background-image: url("../images/icons/tag31.png") !important;  
 }
 
+.icon-admin {  
+    background-image: url("../images/icons/load.png") !important;  
+}
+
+.icon-workflow {  
+    background-image: url("../images/icons/working-out.png") !important;  
+}
+
+.icon-severidade {  
+    background-image: url("../images/icons/sort19.png") !important;  
+}
+
+.icon-situacao {  
+    background-image: url("../images/icons/web64.png") !important;  
+}
+
+.icon-negocio {  
+    background-image: url("../images/icons/businessman.png") !important;  
+}
+
+.icon-funcionalidade {  
+    background-image: url("../images/icons/screen104.png") !important;  
+}
+
 /* icones comuns */
 .icon-home {  
     background-image: url("../images/icons/home.png") !important;  

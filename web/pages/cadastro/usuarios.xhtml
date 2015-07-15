@@ -34,12 +34,15 @@
                         <f:selectItems value="#{usuariosCadastroController.listEmpresas}" var="emp" itemLabel="#{emp.idEmpresa} - #{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
                     </p:selectOneMenu>
                     <p:commandButton id="btnNew" icon="icon-novo-usuario" action="#{usuariosCadastroController.usuariosNew}">
-                        <p:tooltip value="visualizar usuario" for="btnNew"/>
+                        <p:tooltip value="novo usuario" for="btnNew"/>
                     </p:commandButton>
                 </p:panelGrid>
                 </div>
             </f:facet>
-            <p:dataTable var="user" value="#{usuariosCadastroController.listUsuarios}">
+            <p:dataTable var="user" value="#{usuariosCadastroController.listUsuarios}"
+                         paginator="true" rows="10" 
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
                 <p:column headerText="Nome">
                     <h:outputText value="#{user.nomeUsuario}"/>
                 </p:column>
@@ -66,7 +69,7 @@
                     <p:commandButton id="btnAtivar" icon="icon-confirmar" actionListener="#{usuariosCadastroController.setTextAtivaUsuario}"
                                      rendered="#{user.master == false}" oncomplete="PF('dlgAtivarUsuario').show();">
                         <f:setPropertyActionListener value="#{user}" target="#{usuariosCadastroController.selectedUsuario}"/>
-                        <p:tooltip value="ativar / inativar usuário" for="btnAtivar"/>
+                        <p:tooltip value="ativar / inativar usuario" for="btnAtivar"/>
                     </p:commandButton>
                 </p:column>
                 

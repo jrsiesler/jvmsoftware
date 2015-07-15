@@ -23,6 +23,7 @@ public class MenuDashboardController {
 
     private PubUsuario usu = new PubUsuario();
     private String primeiroNome;
+    private boolean renderedAdmin = false;
 
     /**
      * Creates a new instance of MenuController
@@ -32,6 +33,9 @@ public class MenuDashboardController {
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
         usu = (PubUsuario)request.getSession().getAttribute("usuario");
         setNome();
+        if (usu.getPubEmpresa().getIdEmpresa() == 1) {
+            renderedAdmin = true;
+        }
     } 
     
     /**
@@ -90,6 +94,34 @@ public class MenuDashboardController {
         return "/pages/cadastro/servicos";
     }
 
+    public String severidade() {
+        return "/pages/admin/severidade";
+    }
+
+    public String situacao() {
+        return "/pages/admin/situacao";
+    }
+
+    public String modulos() {
+        return "/pages/admin/modulos";
+    }
+
+    public String funcionalidades() {
+        return "/pages/admin/funcionalidades";
+    }
+
+    public String tipoCadastro() {
+        return "/pages/admin/tipoCadastro";
+    }
+
+    public String tipoEmpresa() {
+        return "/pages/admin/tipoEmpresa";
+    }
+
+    public String tipoNegocio() {
+        return "/pages/admin/tipoNegocio";
+    }
+
     
     /**
      * acesso aos modulos pelo dashboard
@@ -125,6 +157,14 @@ public class MenuDashboardController {
 
     public void setPrimeiroNome(String primeiroNome) {
         this.primeiroNome = primeiroNome;
+    }
+
+    public boolean isRenderedAdmin() {
+        return renderedAdmin;
+    }
+
+    public void setRenderedAdmin(boolean renderedAdmin) {
+        this.renderedAdmin = renderedAdmin;
     }
     
     

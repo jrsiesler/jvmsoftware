@@ -141,15 +141,6 @@ public class UsuariosCadastroController implements Serializable{
     
     public String inativaUsuario() {
         String navegar = "/pages/cadastro/usuarios";
-        if (selectedUsuario.getAtivo() == true) {
-            selectedUsuario.setAtivo(false);
-            msg = "usuario inativado com sucesso.";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
-        } else {
-            selectedUsuario.setAtivo(true);
-            msg = "usuario ativado com sucesso.";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
-        }
         try {
             if (selectedUsuario.getAtivo() == true) {
                 selectedUsuario.setAtivo(false);

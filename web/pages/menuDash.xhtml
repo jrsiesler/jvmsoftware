@@ -23,6 +23,23 @@ and open the template in the editor.
                         
                         <p:menuitem icon="icon-home" value="inicio" action="#{menuDashboardController.dashboard}"/>
                         
+                        <p:submenu label="admin" icon="icon-admin" rendered="#{menuDashboardController.renderedAdmin}">
+                            <p:submenu label="cadastros" icon="icon-cadastros">
+                                <p:submenu label="geral" icon="icon-cadastros">
+                                    <p:menuitem value="modulos" action="#{menuDashboardController.modulos}" icon="icon-sistemas"/>
+                                    <p:menuitem value="funcionalidades" action="#{menuDashboardController.funcionalidades}" icon="icon-funcionalidade"/>
+                                    <p:separator/>
+                                    <p:menuitem value="tipo cadastro" action="#{menuDashboardController.tipoCadastro}" icon="icon-cadastros"/>
+                                    <p:menuitem value="tipo empresa" action="#{menuDashboardController.tipoEmpresa}" icon="icon-empresa"/>
+                                    <p:menuitem value="tipo negocio" action="#{menuDashboardController.tipoNegocio}" icon="icon-negocio"/>
+                                </p:submenu>
+                                <p:submenu label="workflow" icon="icon-workflow">
+                                    <p:menuitem value="severidade" action="#{menuDashboardController.severidade}" icon="icon-severidade"/>
+                                    <p:menuitem value="situacao" action="#{menuDashboardController.situacao}" icon="icon-situacao"/>
+                                </p:submenu>
+                            </p:submenu>
+                        </p:submenu>
+                        
                         <p:submenu label="cadastro" icon="icon-cadastros">
                             <p:submenu label="controle de acesso" icon="icon-controle-acesso" rendered="#{menuDashboardController.usu.master}">
                                 <p:menuitem value="usuarios" action="#{menuDashboardController.usuarios}" icon="icon-usuarios"/>
