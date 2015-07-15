@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 12/Jul/2015 22:01:41 by Hibernate Tools 4.3.1
+// Generated 14/Jul/2015 23:13:11 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -17,6 +17,7 @@ public class PubSistema  implements java.io.Serializable {
      private String imagemSistema;
      private boolean ativo;
      private Set<PubMenu> pubMenus = new HashSet<PubMenu>(0);
+     private Set<PubFuncionalidade> pubFuncionalidades = new HashSet<PubFuncionalidade>(0);
      private Set<SupSolicitacao> supSolicitacaos = new HashSet<SupSolicitacao>(0);
      private Set<WflWorkflow> wflWorkflows = new HashSet<WflWorkflow>(0);
      private Set<CtrLog> ctrLogs = new HashSet<CtrLog>(0);
@@ -33,12 +34,13 @@ public class PubSistema  implements java.io.Serializable {
         this.descricaoSistema = descricaoSistema;
         this.ativo = ativo;
     }
-    public PubSistema(String nomeSistema, String descricaoSistema, String imagemSistema, boolean ativo, Set<PubMenu> pubMenus, Set<SupSolicitacao> supSolicitacaos, Set<WflWorkflow> wflWorkflows, Set<CtrLog> ctrLogs, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<AcsUsuarioSistema> acsUsuarioSistemas, Set<WflSituacao> wflSituacaos) {
+    public PubSistema(String nomeSistema, String descricaoSistema, String imagemSistema, boolean ativo, Set<PubMenu> pubMenus, Set<PubFuncionalidade> pubFuncionalidades, Set<SupSolicitacao> supSolicitacaos, Set<WflWorkflow> wflWorkflows, Set<CtrLog> ctrLogs, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<AcsUsuarioSistema> acsUsuarioSistemas, Set<WflSituacao> wflSituacaos) {
        this.nomeSistema = nomeSistema;
        this.descricaoSistema = descricaoSistema;
        this.imagemSistema = imagemSistema;
        this.ativo = ativo;
        this.pubMenus = pubMenus;
+       this.pubFuncionalidades = pubFuncionalidades;
        this.supSolicitacaos = supSolicitacaos;
        this.wflWorkflows = wflWorkflows;
        this.ctrLogs = ctrLogs;
@@ -88,6 +90,13 @@ public class PubSistema  implements java.io.Serializable {
     
     public void setPubMenus(Set<PubMenu> pubMenus) {
         this.pubMenus = pubMenus;
+    }
+    public Set<PubFuncionalidade> getPubFuncionalidades() {
+        return this.pubFuncionalidades;
+    }
+    
+    public void setPubFuncionalidades(Set<PubFuncionalidade> pubFuncionalidades) {
+        this.pubFuncionalidades = pubFuncionalidades;
     }
     public Set<SupSolicitacao> getSupSolicitacaos() {
         return this.supSolicitacaos;

@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 12/Jul/2015 22:01:41 by Hibernate Tools 4.3.1
+// Generated 14/Jul/2015 23:13:11 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,8 +12,8 @@ public class PubFuncionalidade  implements java.io.Serializable {
 
 
      private Integer idFuncionalidade;
+     private PubSistema pubSistema;
      private String descricaoFuncionalidade;
-     private int sistema;
      private Set<SupSolicitacao> supSolicitacaos = new HashSet<SupSolicitacao>(0);
      private Set<WflWorkflow> wflWorkflows = new HashSet<WflWorkflow>(0);
 
@@ -21,13 +21,13 @@ public class PubFuncionalidade  implements java.io.Serializable {
     }
 
 	
-    public PubFuncionalidade(String descricaoFuncionalidade, int sistema) {
+    public PubFuncionalidade(PubSistema pubSistema, String descricaoFuncionalidade) {
+        this.pubSistema = pubSistema;
         this.descricaoFuncionalidade = descricaoFuncionalidade;
-        this.sistema = sistema;
     }
-    public PubFuncionalidade(String descricaoFuncionalidade, int sistema, Set<SupSolicitacao> supSolicitacaos, Set<WflWorkflow> wflWorkflows) {
+    public PubFuncionalidade(PubSistema pubSistema, String descricaoFuncionalidade, Set<SupSolicitacao> supSolicitacaos, Set<WflWorkflow> wflWorkflows) {
+       this.pubSistema = pubSistema;
        this.descricaoFuncionalidade = descricaoFuncionalidade;
-       this.sistema = sistema;
        this.supSolicitacaos = supSolicitacaos;
        this.wflWorkflows = wflWorkflows;
     }
@@ -39,19 +39,19 @@ public class PubFuncionalidade  implements java.io.Serializable {
     public void setIdFuncionalidade(Integer idFuncionalidade) {
         this.idFuncionalidade = idFuncionalidade;
     }
+    public PubSistema getPubSistema() {
+        return this.pubSistema;
+    }
+    
+    public void setPubSistema(PubSistema pubSistema) {
+        this.pubSistema = pubSistema;
+    }
     public String getDescricaoFuncionalidade() {
         return this.descricaoFuncionalidade;
     }
     
     public void setDescricaoFuncionalidade(String descricaoFuncionalidade) {
         this.descricaoFuncionalidade = descricaoFuncionalidade;
-    }
-    public int getSistema() {
-        return this.sistema;
-    }
-    
-    public void setSistema(int sistema) {
-        this.sistema = sistema;
     }
     public Set<SupSolicitacao> getSupSolicitacaos() {
         return this.supSolicitacaos;

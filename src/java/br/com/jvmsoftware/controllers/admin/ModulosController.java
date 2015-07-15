@@ -55,7 +55,7 @@ public class ModulosController {
     
     public String modulos() {
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
-        request.getSession().setAttribute("selectedUsuario", null);  
+        request.getSession().setAttribute("selectedModulo", null);  
         String navegar = "/pages/admin/modulos";
         return navegar;
     }

@@ -22,8 +22,8 @@
     <!-- Mapeamento -->
     <mapping resource="br/com/jvmsoftware/entities/PubEstado.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/AcsEmpresaSistema.hbm.xml"/>
-    <mapping resource="br/com/jvmsoftware/entities/AcsAcessoUsuarios.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/WflSituacao.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/AcsAcessoUsuarios.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubUsuario.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/SupSolicitacao.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubMenu.hbm.xml"/>
@@ -39,8 +39,8 @@
     <mapping resource="br/com/jvmsoftware/entities/CtrLog.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/CadPessoaFisica.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubFuncionalidade.hbm.xml"/>
-    <mapping resource="br/com/jvmsoftware/entities/PubConfigEmpresa.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/WflWorkflowEvento.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubConfigEmpresa.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubTipoCadastro.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/CadPessoaJuridica.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/CadPessoa.hbm.xml"/>
