@@ -6,7 +6,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions">
-<ui:composition template="/template.xhtml">   
+<ui:composition template="/template.xhtml">  
     <ui:define name="menu">
         <p:panel style=" width:100%; height:55px">
             <ui:include src="/pages/menuDash.xhtml"/>
@@ -22,24 +22,32 @@
         
     <h:form>
         <p:messages id="msgs"/>
-        <p:panel id="dash" header="MODULO ADMIN - tipo negocio"  style="height: 590px; text-align: center; alignment-baseline: central">
+        <p:panel id="dash" header="MODULO ADMIN - funcionalidades"  style="height: 590px; text-align: center; alignment-baseline: central">
             <f:facet name="header">
-                <h:outputText value="MODULO ADMIN - tipo negocio"/>
+                <h:outputText value="MODULO ADMIN - funcionalidades"/>
                 <div align="center">
-                    <p:commandButton id="btnNew" icon="icon-negocio" action="#{tipoNegocioController.tipoNegociosNew}" update="@form">
+                <p:panelGrid columns="3" layout="grid">
+                    <p:outputLabel id="labMod" value="Selecione a empresa" for="mod"/>
+                    <p:selectOneMenu id="mod" label="labMod" value="#{funcionalidadesController.sistema}">
+                        <p:ajax update="@form" process="@form" listener="#{funcionalidadesController.changeModulo}"/>
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{funcionalidadesController.listSistemas}" var="modu" itemLabel="#{modu.nomeSistema}" itemValue="#{modu.idSistema}"/>
+                    </p:selectOneMenu>
+                    <p:commandButton id="btnNew" icon="icon-funcionalidade" action="#{funcionalidadesController.funcionalidadesNew}" update="@form">
                         <p:tooltip value="nova funcionalidade" for="btnNew"/>
                     </p:commandButton>
+                </p:panelGrid>
                 </div>
             </f:facet>
-            <p:dataTable var="tNeg" value="#{tipoNegocioController.listTipoNegocios}"
+            <p:dataTable var="func" value="#{funcionalidadesController.listFuncionalidades}"
                          paginator="true" rows="10" 
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
-                <p:column headerText="Identificador">
-                    <h:outputText value="#{tNeg.idTipoNegocio}"/>
+                <p:column headerText="Modulo">
+                    <h:outputText value="#{func.pubSistema.nomeSistema}"/>
                 </p:column>
-                <p:column headerText="Tipo de Negocio">
-                    <h:outputText value="#{tNeg.tipoNegocio}"/>
+                <p:column headerText="Funcionalidade">
+                    <h:outputText value="#{func.descricaoFuncionalidade}"/>
                 </p:column>
             </p:dataTable>
 
