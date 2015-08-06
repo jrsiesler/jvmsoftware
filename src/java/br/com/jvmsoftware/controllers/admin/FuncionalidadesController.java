@@ -10,6 +10,7 @@ import br.com.jvmsoftware.daos.PubSistemaDAO;
 import br.com.jvmsoftware.entities.PubFuncionalidade;
 import br.com.jvmsoftware.entities.PubSistema;
 import br.com.jvmsoftware.entities.PubUsuario;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @ViewScoped
-public class FuncionalidadesController {
+public class FuncionalidadesController implements Serializable{
     
     private final PubSistemaDAO sisDAO = new PubSistemaDAO();
     private final PubFuncionalidadeDAO funDAO = new PubFuncionalidadeDAO();
@@ -79,7 +80,7 @@ public class FuncionalidadesController {
         navegar = "/pages/admin/funcionalidadesNew";
         } else {
             msg = "selecione um modulo para incluir uma nova funcionalidade.";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, msg, msg));
             navegar = "/pages/admin/funcionalidades";
         }
         return navegar;
@@ -90,7 +91,7 @@ public class FuncionalidadesController {
         try {
             funDAO.inserirFuncionalidade(selectedFuncionalidade);
             msg = "Funcionalidade incluida com sucesso.";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
         } catch (SQLException ex) {
             msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));

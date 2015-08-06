@@ -6,6 +6,7 @@
 package br.com.jvmsoftware.controllers.cadastros;
 
 import br.com.jvmsoftware.entities.PubUsuario;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @RequestScoped
-public class IndexCadastroController {
+public class IndexCadastroController implements Serializable{
 
     private PubUsuario usu = new PubUsuario();
     

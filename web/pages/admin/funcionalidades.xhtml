@@ -33,7 +33,7 @@
                         <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
                         <f:selectItems value="#{funcionalidadesController.listSistemas}" var="modu" itemLabel="#{modu.nomeSistema}" itemValue="#{modu.idSistema}"/>
                     </p:selectOneMenu>
-                    <p:commandButton id="btnNew" icon="icon-funcionalidade" action="#{funcionalidadesController.funcionalidadesNew}">
+                    <p:commandButton id="btnNew" icon="icon-funcionalidade" action="#{funcionalidadesController.funcionalidadesNew}" update="@form">
                         <p:tooltip value="nova funcionalidade" for="btnNew"/>
                     </p:commandButton>
                 </p:panelGrid>

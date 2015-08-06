@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 14/Jul/2015 23:13:11 by Hibernate Tools 4.3.1
+// Generated 4/Ago/2015 22:25:45 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;

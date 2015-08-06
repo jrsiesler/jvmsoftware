@@ -50,10 +50,9 @@
                         <f:setPropertyActionListener value="#{modul}" target="#{modulosController.selectedModulo}"/>
                         <p:tooltip value="editar modulo" for="btnEdit"/>
                     </p:commandButton>
-                    <p:commandButton id="btnAtivar" icon="icon-confirmar"
-                                     oncomplete="PF('dlgAtivarUsuario').show();">
+                    <p:commandButton id="btnAtivar" icon="icon-confirmar" action="#{modulosController.inativaModulo}" update="@form">
                         <f:setPropertyActionListener value="#{modul}" target="#{modulosController.selectedModulo}"/>
-                        <p:tooltip value="ativar / inativar modulo" for="btnAtivar"/>l
+                        <p:tooltip value="ativar / inativar modulo" for="btnAtivar"/>
                     </p:commandButton>
                 </p:column>
             </p:dataTable>
@@ -61,14 +60,6 @@
         </p:panel>
         <div style="clear:both" />
         
-        <p:dialog id="dlgAtivarUsuario" header="Confirmar Ativação / inativação usuarios" widgetVar="dlgAtivarUsuario" >
-            <br/><br/>
-            <p:inputText value="#{usuariosCadastroController.textAtivaUsuario}" disabled="true"/>
-            <h:outputText value="#{usuariosCadastroController.usu.nomeUsuario} - usu"/>
-            <h:outputText value="#{usuariosCadastroController.selectedUsuario.nomeUsuario} - selectedUser"/>
-            confirma a ativação / inativação do módulo?
-            <br/><br/>
-        </p:dialog>
     </h:form>
     </ui:define>  
 </ui:composition>  

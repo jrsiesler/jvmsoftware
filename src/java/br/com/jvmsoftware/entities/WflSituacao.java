@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 14/Jul/2015 23:13:11 by Hibernate Tools 4.3.1
+// Generated 4/Ago/2015 22:25:45 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,6 +16,7 @@ public class WflSituacao  implements java.io.Serializable {
      private PubSistema pubSistema;
      private String codSituacao;
      private String descricaoSituacao;
+     private int prioridade;
      private Set<SupSolicitacao> supSolicitacaos = new HashSet<SupSolicitacao>(0);
      private Set<WflWorkflowEvento> wflWorkflowEventosForSituacaoAnterior = new HashSet<WflWorkflowEvento>(0);
      private Set<WflWorkflowEvento> wflWorkflowEventosForSituacaoAtual = new HashSet<WflWorkflowEvento>(0);
@@ -25,16 +26,18 @@ public class WflSituacao  implements java.io.Serializable {
     }
 
 	
-    public WflSituacao(PubSistema pubSistema, String codSituacao, String descricaoSituacao) {
+    public WflSituacao(PubSistema pubSistema, String codSituacao, String descricaoSituacao, int prioridade) {
         this.pubSistema = pubSistema;
         this.codSituacao = codSituacao;
         this.descricaoSituacao = descricaoSituacao;
+        this.prioridade = prioridade;
     }
-    public WflSituacao(PubEmpresa pubEmpresa, PubSistema pubSistema, String codSituacao, String descricaoSituacao, Set<SupSolicitacao> supSolicitacaos, Set<WflWorkflowEvento> wflWorkflowEventosForSituacaoAnterior, Set<WflWorkflowEvento> wflWorkflowEventosForSituacaoAtual, Set<WflWorkflow> wflWorkflows) {
+    public WflSituacao(PubEmpresa pubEmpresa, PubSistema pubSistema, String codSituacao, String descricaoSituacao, int prioridade, Set<SupSolicitacao> supSolicitacaos, Set<WflWorkflowEvento> wflWorkflowEventosForSituacaoAnterior, Set<WflWorkflowEvento> wflWorkflowEventosForSituacaoAtual, Set<WflWorkflow> wflWorkflows) {
        this.pubEmpresa = pubEmpresa;
        this.pubSistema = pubSistema;
        this.codSituacao = codSituacao;
        this.descricaoSituacao = descricaoSituacao;
+       this.prioridade = prioridade;
        this.supSolicitacaos = supSolicitacaos;
        this.wflWorkflowEventosForSituacaoAnterior = wflWorkflowEventosForSituacaoAnterior;
        this.wflWorkflowEventosForSituacaoAtual = wflWorkflowEventosForSituacaoAtual;
@@ -75,6 +78,13 @@ public class WflSituacao  implements java.io.Serializable {
     
     public void setDescricaoSituacao(String descricaoSituacao) {
         this.descricaoSituacao = descricaoSituacao;
+    }
+    public int getPrioridade() {
+        return this.prioridade;
+    }
+    
+    public void setPrioridade(int prioridade) {
+        this.prioridade = prioridade;
     }
     public Set<SupSolicitacao> getSupSolicitacaos() {
         return this.supSolicitacaos;

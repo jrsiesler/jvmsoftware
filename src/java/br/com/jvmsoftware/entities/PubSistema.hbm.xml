@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/Jul/2015 23:13:24 by Hibernate Tools 4.3.1 -->
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.PubSistema" table="pub_sistema" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idSistema" type="java.lang.Integer">
@@ -46,6 +46,12 @@
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.WflWorkflow" />
         </set>
+        <set name="wflSituacaos" table="wfl_situacao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sistema" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflSituacao" />
+        </set>
         <set name="ctrLogs" table="ctr_log" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="sistema" not-null="true" />
@@ -63,12 +69,6 @@
                 <column name="sistema" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.AcsUsuarioSistema" />
-        </set>
-        <set name="wflSituacaos" table="wfl_situacao" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="sistema" not-null="true" />
-            </key>
-            <one-to-many class="br.com.jvmsoftware.entities.WflSituacao" />
         </set>
     </class>
 </hibernate-mapping>

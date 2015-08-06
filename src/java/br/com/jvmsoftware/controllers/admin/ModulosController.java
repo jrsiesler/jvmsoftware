@@ -8,6 +8,7 @@ package br.com.jvmsoftware.controllers.admin;
 import br.com.jvmsoftware.daos.PubSistemaDAO;
 import br.com.jvmsoftware.entities.PubSistema;
 import br.com.jvmsoftware.entities.PubUsuario;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,9 +27,9 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @ViewScoped
-public class ModulosController {
+public class ModulosController implements Serializable{
     
-    private PubSistemaDAO sisDAO = new PubSistemaDAO();
+    private final PubSistemaDAO sisDAO = new PubSistemaDAO();
     private PubUsuario usu = new PubUsuario();
     private PubSistema selectedModulo;
     private List<PubSistema> listModulos;
@@ -96,7 +97,7 @@ public class ModulosController {
         try {
             sisDAO.inserirSistema(selectedModulo);
             msg = "Modulo incluido com sucesso.";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
         } catch (SQLException ex) {
             msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
@@ -119,10 +120,11 @@ public class ModulosController {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
             }
             sisDAO.atualizarSistema(selectedModulo);
+            listModulos = sisDAO.listAllSistemas();
         } catch (SQLException ex) {
             Logger.getLogger(ModulosController.class.getName()).log(Level.SEVERE, null, ex);
             msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
         }
         return navegar;
     }

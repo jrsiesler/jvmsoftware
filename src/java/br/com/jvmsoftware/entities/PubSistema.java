@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 14/Jul/2015 23:13:11 by Hibernate Tools 4.3.1
+// Generated 4/Ago/2015 22:25:45 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -20,10 +20,10 @@ public class PubSistema  implements java.io.Serializable {
      private Set<PubFuncionalidade> pubFuncionalidades = new HashSet<PubFuncionalidade>(0);
      private Set<SupSolicitacao> supSolicitacaos = new HashSet<SupSolicitacao>(0);
      private Set<WflWorkflow> wflWorkflows = new HashSet<WflWorkflow>(0);
+     private Set<WflSituacao> wflSituacaos = new HashSet<WflSituacao>(0);
      private Set<CtrLog> ctrLogs = new HashSet<CtrLog>(0);
      private Set<AcsEmpresaSistema> acsEmpresaSistemas = new HashSet<AcsEmpresaSistema>(0);
      private Set<AcsUsuarioSistema> acsUsuarioSistemas = new HashSet<AcsUsuarioSistema>(0);
-     private Set<WflSituacao> wflSituacaos = new HashSet<WflSituacao>(0);
 
     public PubSistema() {
     }
@@ -34,7 +34,7 @@ public class PubSistema  implements java.io.Serializable {
         this.descricaoSistema = descricaoSistema;
         this.ativo = ativo;
     }
-    public PubSistema(String nomeSistema, String descricaoSistema, String imagemSistema, boolean ativo, Set<PubMenu> pubMenus, Set<PubFuncionalidade> pubFuncionalidades, Set<SupSolicitacao> supSolicitacaos, Set<WflWorkflow> wflWorkflows, Set<CtrLog> ctrLogs, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<AcsUsuarioSistema> acsUsuarioSistemas, Set<WflSituacao> wflSituacaos) {
+    public PubSistema(String nomeSistema, String descricaoSistema, String imagemSistema, boolean ativo, Set<PubMenu> pubMenus, Set<PubFuncionalidade> pubFuncionalidades, Set<SupSolicitacao> supSolicitacaos, Set<WflWorkflow> wflWorkflows, Set<WflSituacao> wflSituacaos, Set<CtrLog> ctrLogs, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<AcsUsuarioSistema> acsUsuarioSistemas) {
        this.nomeSistema = nomeSistema;
        this.descricaoSistema = descricaoSistema;
        this.imagemSistema = imagemSistema;
@@ -43,10 +43,10 @@ public class PubSistema  implements java.io.Serializable {
        this.pubFuncionalidades = pubFuncionalidades;
        this.supSolicitacaos = supSolicitacaos;
        this.wflWorkflows = wflWorkflows;
+       this.wflSituacaos = wflSituacaos;
        this.ctrLogs = ctrLogs;
        this.acsEmpresaSistemas = acsEmpresaSistemas;
        this.acsUsuarioSistemas = acsUsuarioSistemas;
-       this.wflSituacaos = wflSituacaos;
     }
    
     public Integer getIdSistema() {
@@ -112,6 +112,13 @@ public class PubSistema  implements java.io.Serializable {
     public void setWflWorkflows(Set<WflWorkflow> wflWorkflows) {
         this.wflWorkflows = wflWorkflows;
     }
+    public Set<WflSituacao> getWflSituacaos() {
+        return this.wflSituacaos;
+    }
+    
+    public void setWflSituacaos(Set<WflSituacao> wflSituacaos) {
+        this.wflSituacaos = wflSituacaos;
+    }
     public Set<CtrLog> getCtrLogs() {
         return this.ctrLogs;
     }
@@ -132,13 +139,6 @@ public class PubSistema  implements java.io.Serializable {
     
     public void setAcsUsuarioSistemas(Set<AcsUsuarioSistema> acsUsuarioSistemas) {
         this.acsUsuarioSistemas = acsUsuarioSistemas;
-    }
-    public Set<WflSituacao> getWflSituacaos() {
-        return this.wflSituacaos;
-    }
-    
-    public void setWflSituacaos(Set<WflSituacao> wflSituacaos) {
-        this.wflSituacaos = wflSituacaos;
     }
 
 

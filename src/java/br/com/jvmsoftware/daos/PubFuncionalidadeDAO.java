@@ -37,7 +37,7 @@ public class PubFuncionalidadeDAO extends DefaultDAO {
         getSession();
         begin();
         List<PubFuncionalidade> funcionalidades;
-        funcionalidades = session.createQuery("from PubFuncionalidade f where f.pubSistema.idSistema = :sis order by f.pubSistema.nomeSistema, f.descricaoFuncionalidade").setParameter("mail", sis).list();
+        funcionalidades = session.createQuery("from PubFuncionalidade f where f.pubSistema.idSistema = :sis order by f.pubSistema.nomeSistema, f.descricaoFuncionalidade").setParameter("sis", sis.getIdSistema()).list();
         return funcionalidades;
     }
     

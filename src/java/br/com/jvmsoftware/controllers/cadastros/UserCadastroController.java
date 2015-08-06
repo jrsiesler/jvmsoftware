@@ -16,6 +16,7 @@ import br.com.jvmsoftware.entities.PubMunicipio;
 import br.com.jvmsoftware.entities.PubTipoCadastro;
 import br.com.jvmsoftware.entities.PubUsuario;
 import br.com.jvmsoftware.util.Criptografia;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,7 +36,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @ViewScoped
-public class UserCadastroController {
+public class UserCadastroController implements Serializable{
 
     FacesMessage message = new FacesMessage();
     private final PubUsuarioDAO usuDAO = new PubUsuarioDAO();

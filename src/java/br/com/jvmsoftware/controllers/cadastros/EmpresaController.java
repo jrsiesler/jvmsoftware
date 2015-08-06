@@ -14,6 +14,7 @@ import br.com.jvmsoftware.entities.PubEstado;
 import br.com.jvmsoftware.entities.PubMunicipio;
 import br.com.jvmsoftware.entities.PubTipoCadastro;
 import br.com.jvmsoftware.entities.PubUsuario;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -32,7 +33,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @ViewScoped
-public class EmpresaController {
+public class EmpresaController implements Serializable{
     
     private final PubEmpresaDAO empDAO = new PubEmpresaDAO();
     private final PubEstadoDAO estDAO = new PubEstadoDAO();

@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 14/Jul/2015 23:13:11 by Hibernate Tools 4.3.1
+// Generated 4/Ago/2015 22:25:45 by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package br.com.jvmsoftware.entities;
 public class CadPessoaJuridica  implements java.io.Serializable {
 
 
-     private Integer idPessoaFisica;
+     private Integer idPessoaJuridica;
      private CadPessoa cadPessoa;
      private PubEstado pubEstado;
      private PubMunicipio pubMunicipio;
@@ -50,12 +50,12 @@ public class CadPessoaJuridica  implements java.io.Serializable {
        this.tipoCadastro = tipoCadastro;
     }
    
-    public Integer getIdPessoaFisica() {
-        return this.idPessoaFisica;
+    public Integer getIdPessoaJuridica() {
+        return this.idPessoaJuridica;
     }
     
-    public void setIdPessoaFisica(Integer idPessoaFisica) {
-        this.idPessoaFisica = idPessoaFisica;
+    public void setIdPessoaJuridica(Integer idPessoaJuridica) {
+        this.idPessoaJuridica = idPessoaJuridica;
     }
     public CadPessoa getCadPessoa() {
         return this.cadPessoa;

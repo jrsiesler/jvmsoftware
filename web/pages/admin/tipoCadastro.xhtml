@@ -23,9 +23,29 @@
     <h:form>
         <p:messages id="msgs"/>
         <p:panel id="dash" header="MODULO ADMIN - tipo cadastro"  style="height: 590px; text-align: center; alignment-baseline: central">
-            <h:outputText value="#{indexSuporteController.usu.nomeUsuario}"/>
+            <f:facet name="header">
+                <h:outputText value="MODULO ADMIN - tipo cadastro"/>
+                <div align="center">
+                    <p:commandButton id="btnNew" icon="icon-cadastros" action="#{tipoCadastroController.tipoCadastrosNew}" update="@form">
+                        <p:tooltip value="nova funcionalidade" for="btnNew"/>
+                    </p:commandButton>
+                </div>
+            </f:facet>
+            <p:dataTable var="tCad" value="#{tipoCadastroController.listTipoCadastros}"
+                         paginator="true" rows="10" 
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column headerText="Codigo">
+                    <h:outputText value="#{tCad.codigoTipoCadastro}"/>
+                </p:column>
+                <p:column headerText="Descricao">
+                    <h:outputText value="#{tCad.descricaoTipoCadastro}"/>
+                </p:column>
+            </p:dataTable>
+
         </p:panel>
         <div style="clear:both" />
+        
     </h:form>
     </ui:define>  
 </ui:composition>  
